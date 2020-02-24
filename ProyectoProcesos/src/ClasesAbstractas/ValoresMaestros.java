@@ -12,7 +12,7 @@ public class ValoresMaestros {
 	public final static String TIPOS_SUPERVISOR_ASESOR[] = {"CALL CENTER", "CAMPO", "REDES SOCIALES"};
 	
 	//Valores para interfaz credenciales
-	public final static String TIPOS_USUARIOS[] = {"ADMINISTRADOR", "EDITOR", "OBSERVADOR-COMENTADOR"};
+	public final static String TIPOS_USUARIOS[] = {"SUPERVISOR", "ASESOR", "OPERADOR"};
 	
 	//Valores para clase Persona
 	public final static String TIPOS_DOCUMENTOS[] = {"CEDULA", "PASAPORTE", "RUC PERSONAL", "RUC JURIDICO"};

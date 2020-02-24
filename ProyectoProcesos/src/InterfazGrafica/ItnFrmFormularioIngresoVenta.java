@@ -11,6 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 import javax.swing.JTabbedPane;
+import javax.swing.JScrollPane;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
 public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 
@@ -23,13 +27,14 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ItnFrmFormularioIngresoVenta() {
-		setBounds(100, 100, 479, 484);
+		setBounds(100, 100, 481, 484);
 		getContentPane().setLayout(new BorderLayout(0, 0));
+		this.setClosable(true);
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("FORMULARIO INGRESO DE VENTAS");
+		JLabel lblNewLabel = new JLabel("FORMULARIO DE INGRESO DE VENTAS");
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
@@ -45,6 +50,14 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		tabbedPane.addTab("VENDEDOR", null, scrollPane, null);
+		
+		JPanel panel_2 = new JPanel();
+		scrollPane.setViewportView(panel_2);
+		panel_2.setLayout(new FormLayout(new ColumnSpec[] {},
+			new RowSpec[] {}));
 		
 	}
 

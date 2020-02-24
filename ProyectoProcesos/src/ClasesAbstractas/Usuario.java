@@ -37,6 +37,10 @@ public class Usuario {
 			this.oOperador = new Operador();
 			this.userTipe = "EDITOR";
 			break;
+		case "ADMINISTRADOR":
+			this.cargo = cargo;
+			this.oAdministrador = new Administrador();
+			this.userTipe = "ADMINISTRADOR";
 			
 		}
 		
@@ -89,5 +93,12 @@ public class Usuario {
 	public void setUserTipe(String userTipe) {
 		this.userTipe = userTipe;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [user=" + user + ", password=" + password + ", userTipe=" + userTipe + ", cargo=" + cargo + "]";
+	}
+	
+	
 
 }

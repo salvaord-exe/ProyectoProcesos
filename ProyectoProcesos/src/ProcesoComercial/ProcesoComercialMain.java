@@ -19,7 +19,7 @@ public class ProcesoComercialMain {
 			public void run() {
 				try {
 					FrmProcesoComercial frame = new FrmProcesoComercial();
-					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

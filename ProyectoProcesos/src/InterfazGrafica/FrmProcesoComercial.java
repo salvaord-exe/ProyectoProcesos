@@ -2,6 +2,7 @@ package InterfazGrafica;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
 
@@ -74,6 +75,9 @@ public class FrmProcesoComercial extends JFrame {
 		this.setExtendedState(MAXIMIZED_BOTH);
 		this.construirMenu();
 		this.construirDesktopPane();
+		
+		this.setVisible(true);
+		this.eventoIniciarSesion();
 	}
 
 	public void construirMenu() {
@@ -86,19 +90,21 @@ public class FrmProcesoComercial extends JFrame {
 		this.mnVentas = new JMenu("VENTAS");
 		this.menuBar.add(mnVentas);
 
-		// MenuItems del menu Inicio
+		// MenuItems del menu Inicio (inutilizable)
 		this.mntnIniciarSesion = new JMenuItem("INICIAR SESION");
 		mntnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				
 				getThis().oJDIniciarSesion = new JDUsuario("INICIAR_SESION");
+				getThis().oJDIniciarSesion.setLocationRelativeTo(getThis());
 				getThis().oJDIniciarSesion.setVisible(true);
 				getThis().oJDIniciarSesion.setoFrmProcesoComercial(getThis());
 				getThis().setoJDIniciarSesion(getThis().oJDIniciarSesion);
 				
 			}
 		});
-		this.mnInicio.add(this.mntnIniciarSesion);
+		//this.mnInicio.add(this.mntnIniciarSesion);
 
 		
 		
@@ -109,6 +115,7 @@ public class FrmProcesoComercial extends JFrame {
 				getThis().oJDCrearUsuario.setVisible(true);
 				getThis().oJDCrearUsuario.setoFrmProcesoComercial(getThis());
 				getThis().setoJDCrearUsuario(getThis().oJDCrearUsuario);
+				
 			}
 		});
 		this.mnInicio.add(this.mntnCrearUsuario);
@@ -141,7 +148,7 @@ public class FrmProcesoComercial extends JFrame {
 		this.mntnReportes = new JMenuItem("REPORTES");
 		this.mnVentas.add(this.mntnReportes);
 
-		this.mnVentas.setEnabled(false); //falso hasta que inicie sesion 
+		
 	}
 
 	public void construirDesktopPane() {
@@ -153,9 +160,29 @@ public class FrmProcesoComercial extends JFrame {
 	public void addItnFrmFormularioIngresoVenta() {
 		ItnFrmFormularioIngresoVenta oItnFrmFormularioIngresoVenta = new ItnFrmFormularioIngresoVenta();
 		this.desktopPane.add(oItnFrmFormularioIngresoVenta);
+		
+		Dimension desktopSize = this.desktopPane.getSize();
+		Dimension FrameSize = oItnFrmFormularioIngresoVenta.getSize();
+		
+		oItnFrmFormularioIngresoVenta.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
 		oItnFrmFormularioIngresoVenta.setVisible(true);
 	}
 
+	
+	public void eventoIniciarSesion() {
+		getThis().oJDIniciarSesion = new JDUsuario("INICIAR_SESION");
+		getThis().setoJDIniciarSesion(getThis().oJDIniciarSesion);
+		getThis().oJDIniciarSesion.setoFrmProcesoComercial(getThis());
+		getThis().oJDIniciarSesion.setLocationRelativeTo(getThis());
+		getThis().oJDIniciarSesion.setVisible(true);
+		
+	}
+	
+	public void eventoSesionAdministrador() {
+		System.out.println("Si esta llamando a la webada");
+		this.getoJDIniciarSesion().setVisible(false);
+		
+	}
 	
 	
 	public JDUsuario getoJDIniciarSesion() {

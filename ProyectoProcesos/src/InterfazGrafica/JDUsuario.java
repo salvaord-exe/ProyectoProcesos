@@ -15,6 +15,7 @@ import ClasesAbstractas.ValoresMaestros;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -80,10 +81,12 @@ public class JDUsuario extends JDialog {
 		}
 		
 		
+		
 	}
 	
 	public void constructorCrearUsuario() {
 		setResizable(false);
+		setModal(true);
 		setBounds(100, 100, 392, 400);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -293,8 +296,10 @@ public class JDUsuario extends JDialog {
 	}
 	
 	public void constructorIniciarSesion() {
+		setModal(true);
 		setResizable(false);
-		setBounds(100, 100, 305, 304);
+		this.setUndecorated(true);
+		setBounds(100, 100, 305, 270);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -308,18 +313,22 @@ public class JDUsuario extends JDialog {
 		lblContrasea.setHorizontalAlignment(SwingConstants.CENTER);
 		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		JPasswordField txtPassword = new JPasswordField();
+		passwordField = new JPasswordField();
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGap(39)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(txtPassword)
-						.addComponent(lblContrasea, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-						.addComponent(txtUsuario)
-						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(44, Short.MAX_VALUE))
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblContrasea, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+								.addComponent(txtUsuario, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+								.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+							.addGap(52))))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -331,8 +340,8 @@ public class JDUsuario extends JDialog {
 					.addGap(28)
 					.addComponent(lblContrasea, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(47, Short.MAX_VALUE))
+					.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(86, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
@@ -344,6 +353,7 @@ public class JDUsuario extends JDialog {
 				btnIniciarSesion.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						getThis().iniciarSesion();
+						
 					}
 				});
 				btnIniciarSesion.setActionCommand("OK");
@@ -359,6 +369,16 @@ public class JDUsuario extends JDialog {
 	}
 	
 	public void iniciarSesion() {
+		
+			String psswdString = new String(this.passwordField.getPassword());
+			
+			if(psswdString.isEmpty()||this.txtUsuario.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "DEBE INGRESAR USUARIO Y CONTRASEÑA", "ERROR DE INICIO DE SESION", JOptionPane.ERROR_MESSAGE);
+				
+			} else {
+				this.getoFrmProcesoComercial().eventoSesionAdministrador();
+				
+			}
 		
 	}
 	

@@ -13,12 +13,17 @@ public class Empresa {
 	private FrmProcesoComercial oFrmProcesoComercial;
 	
 	public Empresa() {
-		Administrador oAdministrador = new Administrador();
 		
+		Usuario oUsuario0 = new Usuario("ADMINISTRADOR");
+		this.agregarUsuario(oUsuario0,"admin","admin");
 		
 	}
 
-
+	public void agregarUsuario(Usuario oUsuario, String user, String password) {
+		oUsuario.setUser(user);
+		oUsuario.setPassword(password);
+		this.lstUsuarios.add(oUsuario);
+	}
 
 	public FrmProcesoComercial getoFrmProcesoComercial() {
 		return oFrmProcesoComercial;
@@ -27,6 +32,15 @@ public class Empresa {
 	public void setoFrmProcesoComercial(FrmProcesoComercial oFrmProcesoComercial) {
 		this.oFrmProcesoComercial = oFrmProcesoComercial;
 	}
+
+	public List<Usuario> getLstUsuarios() {
+		return lstUsuarios;
+	}
+
+	public void setLstUsuarios(List<Usuario> lstUsuarios) {
+		this.lstUsuarios = lstUsuarios;
+	}
+	
 	
 	
 	
