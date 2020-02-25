@@ -1,15 +1,17 @@
 package ClasesAbstractas;
 
+import java.util.Date;
 import java.util.Scanner;
 import ClasesAbstractas.ValoresMaestros;
 
 public class Fecha {
+	private Date fechaActual;
 	private int anio;
 	private int mes;
 	private int dia;
 
 	public Fecha() {
-
+		
 	}
 
 	public boolean validarAnioBisiesto(int anio) {
@@ -25,6 +27,10 @@ public class Fecha {
 		}
 	}
 
+	public void getAnioActual() {
+		
+	}
+	
 	public int diasxMes(String txtMes) {
 		int i=0;	//la i representa el mes en el array de MESES 
 		while(i<=12) {

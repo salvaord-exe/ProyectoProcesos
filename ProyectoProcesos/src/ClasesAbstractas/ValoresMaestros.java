@@ -14,6 +14,9 @@ public class ValoresMaestros {
 	//Valores para interfaz credenciales
 	public final static String TIPOS_USUARIOS[] = {"SUPERVISOR", "ASESOR", "OPERADOR"};
 	
+	//Valores
+	public final static String ESTADO_CIVIL[] = {"SOLTERO/A","CASADO/A","UNION LIBRE","VIUDO/A"};
+	
 	//Valores para clase Persona
 	public final static String TIPOS_DOCUMENTOS[] = {"CEDULA", "PASAPORTE", "RUC PERSONAL", "RUC JURIDICO"};
 	

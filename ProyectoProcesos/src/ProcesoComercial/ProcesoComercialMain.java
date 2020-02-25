@@ -1,6 +1,7 @@
 package ProcesoComercial;
 
 import java.awt.EventQueue;
+import java.util.Date;
 
 import Actores.Cliente;
 import ClasesAbstractas.*;
@@ -19,7 +20,9 @@ public class ProcesoComercialMain {
 			public void run() {
 				try {
 					FrmProcesoComercial frame = new FrmProcesoComercial();
-					
+					Date fechaActual = new Date();
+							System.out.println(fechaActual.getYear());
+							
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
