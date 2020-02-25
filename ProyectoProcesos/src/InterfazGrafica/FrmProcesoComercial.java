@@ -47,6 +47,7 @@ public class FrmProcesoComercial extends JFrame {
 	private JPasswordField campo_newPass;
 	private JDUsuario oJDIniciarSesion;
 	private JDUsuario oJDCrearUsuario;
+	private ItnFrmFormularioIngresoVenta oItnFrmFormularioIngresoVenta;
 
 	/**
 	 * Launch the application.
@@ -68,16 +69,19 @@ public class FrmProcesoComercial extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
+		
 		// this.frameIcono = new
 		// ImageIcon(getClass().getResource("/Recursos/jXFQWIbk_400x400.jpg")).getImage();
 		setIconImage(this.frameIcono);
 
+		this.eventoIniciarSesion();
+		
 		this.setExtendedState(MAXIMIZED_BOTH);
 		this.construirMenu();
 		this.construirDesktopPane();
 		
-		this.setVisible(true);
-		this.eventoIniciarSesion();
+		
+		
 	}
 
 	public void construirMenu() {
@@ -134,6 +138,7 @@ public class FrmProcesoComercial extends JFrame {
 		this.mntnNuevoFormulario = new JMenuItem("INGRESAR NUEVA VENTA");
 		mntnNuevoFormulario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				getThis().addItnFrmFormularioIngresoVenta();
 			}
 		});
@@ -158,14 +163,34 @@ public class FrmProcesoComercial extends JFrame {
 
 	// Funciones que agregan internal frames al desktop pane
 	public void addItnFrmFormularioIngresoVenta() {
-		ItnFrmFormularioIngresoVenta oItnFrmFormularioIngresoVenta = new ItnFrmFormularioIngresoVenta();
-		this.desktopPane.add(oItnFrmFormularioIngresoVenta);
 		
-		Dimension desktopSize = this.desktopPane.getSize();
-		Dimension FrameSize = oItnFrmFormularioIngresoVenta.getSize();
+		if(this.getoItnFrmFormularioIngresoVenta()!=null) {
+			JOptionPane.showMessageDialog(null, "Solo puede ingresar una venta a la vez.\nCierre la anterior ventana para ingresar una nueva venta.", 
+					"Error ingreso de venta", JOptionPane.ERROR_MESSAGE);
+		} else {
+			this.oItnFrmFormularioIngresoVenta = new ItnFrmFormularioIngresoVenta();
+			
+			this.setoItnFrmFormularioIngresoVenta(this.oItnFrmFormularioIngresoVenta);
+			this.getoItnFrmFormularioIngresoVenta().setoFrmProcesoComercial(getThis());
+			
+			this.desktopPane.add(oItnFrmFormularioIngresoVenta);
+			
+			Dimension desktopSize = this.desktopPane.getSize();
+			Dimension FrameSize = oItnFrmFormularioIngresoVenta.getSize();
+			
+			oItnFrmFormularioIngresoVenta.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+			oItnFrmFormularioIngresoVenta.setVisible(true);
+			
+			
+		}
 		
-		oItnFrmFormularioIngresoVenta.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-		oItnFrmFormularioIngresoVenta.setVisible(true);
+		
+	}
+	
+	public void cerrarFormularioIngresoVentas() {
+		this.getoItnFrmFormularioIngresoVenta().setVisible(false);
+		this.setoItnFrmFormularioIngresoVenta(null);
+		
 	}
 
 	
@@ -214,6 +239,16 @@ public class FrmProcesoComercial extends JFrame {
 	public void setoEmpresa(Empresa oEmpresa) {
 		this.oEmpresa = oEmpresa;
 	}
+
+	public ItnFrmFormularioIngresoVenta getoItnFrmFormularioIngresoVenta() {
+		return oItnFrmFormularioIngresoVenta;
+	}
+
+	public void setoItnFrmFormularioIngresoVenta(ItnFrmFormularioIngresoVenta oItnFrmFormularioIngresoVenta) {
+		this.oItnFrmFormularioIngresoVenta = oItnFrmFormularioIngresoVenta;
+	}
+	
+	
 	
 	
 	

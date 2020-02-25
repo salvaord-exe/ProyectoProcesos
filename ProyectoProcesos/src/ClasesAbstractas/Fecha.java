@@ -31,27 +31,7 @@ public class Fecha {
 		
 	}
 	
-	public int diasxMes(String txtMes) {
-		int i=0;	//la i representa el mes en el array de MESES 
-		while(i<=12) {
-			if(i==0||i==2||i==4||i==6||i==7||i==9||i==11){//comparo si el mes ingresado es de los que termina en 31
-				if(txtMes.equals(ValoresMaestros.MESES[i])){
-					return 31;
-				}
-			}else if(i==3||i==5||i==8||i==10){//comparo si el mes ingresado es de los que termina en 30
-				if(txtMes.equals(ValoresMaestros.MESES[i])){
-					return 30;
-				}
-			}else if(i==1&&validarAnioBisiesto(anio)==true) {//comparo si el mes ingresado es febrero y si es bisiesto
-				return 29;
-			}else if(i==1&&validarAnioBisiesto(anio)==false){//comparo si el mes ingresado es febrero y si NO es bisiesto
-				return 28;
-			}
-			
-			i++;
-		}
-		return 0;
-	}
+
 
 	public boolean esBisiesto(int anio) {
 		this.anio = anio;

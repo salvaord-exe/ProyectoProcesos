@@ -8,6 +8,11 @@ public class ValoresMaestros {
 	
 	//Valores de restricciones internas de la empresa
 	
+	public final static String ENTIDADES_BANCARIAS[] = {"BCO. GUAYAQUIL","BCO. PICHINCHA","BCO. PRODUBANCO","BCO. BOLIVARIANO", "BCO. PACIFICO",
+			"BCO. INTERNACIONAL","BCO. DEL AUSTRO","BCO. SOLIDARIO"};
+	
+	public final static String MARCAS_TARJETAS_CREDITO[]= {"VISA","MASTERCARD","DINERS CLUB","AMERICAN EXPRESS"};
+	
 	//Valores para clase Asesor y Supervisor
 	public final static String TIPOS_SUPERVISOR_ASESOR[] = {"CALL CENTER", "CAMPO", "REDES SOCIALES"};
 	
@@ -32,7 +37,15 @@ public class ValoresMaestros {
 	//Valores para tipo de servicio
 	public final static String TIPO_SERVICIO[] = {"MOVIL"};
 	
-	//Meses que maneja el año
-	public final static String MESES[]= {"ENERO","FEBRERO","MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"}; //DEBER PARA PINZA
-
+	//Valores para tipo de servicio pospago
+	public final static String TIPO_SERVICIO_POSPAGO[]= {"PLANES - CONEXION SIN LIMITE","PLANES - CONEXION","PLAN - MAS MINUTOS","PLAN - EMPRESARIAL SIN LIMITE (CORPORATIVO)"};
+	
+	public final static String POSPAGO_CONEXION_SIN_LIMITE[]= {"PLAN CONEXION SIN LIMITE (25)","PLAN CONEXION SIN LIMITE (30)","PLAN CONEXION SIN LIMITE (50)","PLAN CONEXION SIN LIMITE (80)"};
+	
+	public final static String POSPAGO_CONEXION[]= {"PLAN CONEXION (15)","PLAN CONEXION (20)"};
+	
+	public final static String POSPAGO_MAS_MINUTOS[]= {"PLAN CLARO 18 MAS MINUTOS",""};
+	
+	public final static String POSPAGO_EMPRESARIAL_SIN_LIMITE[]= {"EMPRESA SIN LIMITE 15 ON AUT","EMPRESA SIN LIMITE 20 ON AUT","EMPRESA SIN LIMITE 25 MD AUT","EMPRESA SIN LIMITE 35 MD AUT"};
+	
 }

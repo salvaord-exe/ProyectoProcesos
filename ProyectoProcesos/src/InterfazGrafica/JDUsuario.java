@@ -298,7 +298,7 @@ public class JDUsuario extends JDialog {
 	public void constructorIniciarSesion() {
 		setModal(true);
 		setResizable(false);
-		this.setUndecorated(true);
+		//this.setUndecorated(true);
 		setBounds(100, 100, 305, 270);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -377,7 +377,7 @@ public class JDUsuario extends JDialog {
 				
 			} else {
 				this.getoFrmProcesoComercial().eventoSesionAdministrador();
-				
+				this.getoFrmProcesoComercial().setVisible(true);
 			}
 		
 	}

@@ -20,8 +20,8 @@ public class ProcesoComercialMain {
 			public void run() {
 				try {
 					FrmProcesoComercial frame = new FrmProcesoComercial();
-					Date fechaActual = new Date();
-							System.out.println(fechaActual.getYear());
+					
+							
 							
 				} catch (Exception e) {
 					e.printStackTrace();
