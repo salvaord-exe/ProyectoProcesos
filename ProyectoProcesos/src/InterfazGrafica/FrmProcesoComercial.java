@@ -48,6 +48,7 @@ public class FrmProcesoComercial extends JFrame {
 	private JDUsuario oJDIniciarSesion;
 	private JDUsuario oJDCrearUsuario;
 	private ItnFrmFormularioIngresoVenta oItnFrmFormularioIngresoVenta;
+	private ItnFrmMatrizVentas oItnFrmMatrizVentas;
 
 	/**
 	 * Launch the application.
@@ -59,8 +60,9 @@ public class FrmProcesoComercial extends JFrame {
 	public FrmProcesoComercial() {
 		
 		this.oEmpresa = new Empresa();
-		this.oEmpresa.setoFrmProcesoComercial(getThis());
 		this.setoEmpresa(oEmpresa);
+		this.oEmpresa.setoFrmProcesoComercial(getThis());
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -116,9 +118,11 @@ public class FrmProcesoComercial extends JFrame {
 		mntnCrearUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	//creando el jdialog de crear usuario
 				getThis().oJDCrearUsuario = new JDUsuario("CREAR_USUARIO");
-				getThis().oJDCrearUsuario.setVisible(true);
-				getThis().oJDCrearUsuario.setoFrmProcesoComercial(getThis());
 				getThis().setoJDCrearUsuario(getThis().oJDCrearUsuario);
+				getThis().oJDCrearUsuario.setoFrmProcesoComercial(getThis());
+				getThis().oJDCrearUsuario.setVisible(true);
+				
+				
 				
 			}
 		});
@@ -145,6 +149,11 @@ public class FrmProcesoComercial extends JFrame {
 		this.mnVentas.add(this.mntnNuevoFormulario);
 
 		this.mntnMatrizIngresoVenta = new JMenuItem("MATRIZ DE VENTAS");
+		mntnMatrizIngresoVenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				addItnFrmMatrizVentas();
+			}
+		});
 		this.mnVentas.add(this.mntnMatrizIngresoVenta);
 
 		this.mntnMatrizConsultas = new JMenuItem("CONSULTA ESTADO DE VENTAS");
@@ -161,6 +170,8 @@ public class FrmProcesoComercial extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 	}
 
+	
+	
 	// Funciones que agregan internal frames al desktop pane
 	public void addItnFrmFormularioIngresoVenta() {
 		
@@ -192,7 +203,30 @@ public class FrmProcesoComercial extends JFrame {
 		this.setoItnFrmFormularioIngresoVenta(null);
 		
 	}
+	
+	public void cerrarCrearUsuario() {
+		this.oJDCrearUsuario.setVisible(false);
+	}
 
+	public void addItnFrmMatrizVentas() {
+		if(this.getoItnFrmMatrizVentas()!=null) {
+			JOptionPane.showMessageDialog(null, "Solo puede tener una matriz de ventas abierta a la vez.", 
+					"Error de matriz de ventas", JOptionPane.ERROR_MESSAGE);
+		}else {
+			this.oItnFrmMatrizVentas = new ItnFrmMatrizVentas();
+			this.setoItnFrmMatrizVentas(this.oItnFrmMatrizVentas);
+			this.getoItnFrmMatrizVentas().setoFrmProcesoComercial(getThis());
+			this.desktopPane.add(this.oItnFrmMatrizVentas);
+			this.oItnFrmMatrizVentas.setVisible(true);
+			this.oItnFrmMatrizVentas.setSize(this.desktopPane.getSize());
+			this.oItnFrmMatrizVentas.setLocation(0,0);
+		}
+	}
+	
+	public void cerrarMatrizVentas() {
+		this.oItnFrmMatrizVentas.setVisible(false);
+		this.setoItnFrmMatrizVentas(null);
+	}
 	
 	public void eventoIniciarSesion() {
 		getThis().oJDIniciarSesion = new JDUsuario("INICIAR_SESION");
@@ -202,6 +236,14 @@ public class FrmProcesoComercial extends JFrame {
 		getThis().oJDIniciarSesion.setVisible(true);
 		
 	}
+	
+	
+	public void almacenarDatosUsuario(String tipoUsuario) {
+		switch (tipoUsuario) {
+		
+		}
+	}
+	
 	
 	public void eventoSesionAdministrador() {
 		System.out.println("Si esta llamando a la webada");
@@ -246,6 +288,14 @@ public class FrmProcesoComercial extends JFrame {
 
 	public void setoItnFrmFormularioIngresoVenta(ItnFrmFormularioIngresoVenta oItnFrmFormularioIngresoVenta) {
 		this.oItnFrmFormularioIngresoVenta = oItnFrmFormularioIngresoVenta;
+	}
+
+	public ItnFrmMatrizVentas getoItnFrmMatrizVentas() {
+		return oItnFrmMatrizVentas;
+	}
+
+	public void setoItnFrmMatrizVentas(ItnFrmMatrizVentas oItnFrmMatrizVentas) {
+		this.oItnFrmMatrizVentas = oItnFrmMatrizVentas;
 	}
 	
 	

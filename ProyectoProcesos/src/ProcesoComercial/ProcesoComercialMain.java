@@ -12,7 +12,7 @@ public class ProcesoComercialMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		System.out.println();
+		System.out.println("hola mundo");
 		ValoresMaestros oValoresMaestros = new ValoresMaestros();
 		
 		
@@ -20,7 +20,7 @@ public class ProcesoComercialMain {
 			public void run() {
 				try {
 					FrmProcesoComercial frame = new FrmProcesoComercial();
-					
+					System.out.println("hola mundo");
 							
 							
 				} catch (Exception e) {

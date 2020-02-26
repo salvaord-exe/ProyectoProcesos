@@ -19,33 +19,7 @@ public class Usuario {
 
 	}
 
-	public Usuario(String cargo) {
-		switch (cargo) {
-		
-		case "ASESOR COMERCIAL":
-			this.cargo = cargo;
-			this.oAsesorComercial = new AsesorComercial();
-			this.userTipe = "OBSERVADOR-COMENTADOR";
-			break;
-		case "SUPERVISOR":
-			this.cargo = cargo;
-			this.oSupervisor = new Supervisor();
-			this.userTipe = "OBSERVADOR-COMENTADOR";
-			break;
-		case "OPERADOR":
-			this.cargo = cargo;
-			this.oOperador = new Operador();
-			this.userTipe = "EDITOR";
-			break;
-		case "ADMINISTRADOR":
-			this.cargo = cargo;
-			this.oAdministrador = new Administrador();
-			this.userTipe = "ADMINISTRADOR";
-			
-		}
-		
-		
-	}
+
 
 	public Usuario(String user, String password, String userTipe) {
 		super();
@@ -98,6 +72,47 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [user=" + user + ", password=" + password + ", userTipe=" + userTipe + ", cargo=" + cargo + "]";
 	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public Administrador getoAdministrador() {
+		return oAdministrador;
+	}
+
+	public void setoAdministrador(Administrador oAdministrador) {
+		this.oAdministrador = oAdministrador;
+	}
+
+	public Operador getoOperador() {
+		return oOperador;
+	}
+
+	public void setoOperador(Operador oOperador) {
+		this.oOperador = oOperador;
+	}
+
+	public AsesorComercial getoAsesorComercial() {
+		return oAsesorComercial;
+	}
+
+	public void setoAsesorComercial(AsesorComercial oAsesorComercial) {
+		this.oAsesorComercial = oAsesorComercial;
+	}
+
+	public Supervisor getoSupervisor() {
+		return oSupervisor;
+	}
+
+	public void setoSupervisor(Supervisor oSupervisor) {
+		this.oSupervisor = oSupervisor;
+	}
+	
 	
 	
 

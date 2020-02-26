@@ -89,9 +89,9 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 	}
 
 	public void constructorInicial() {
-		setBounds(100, 100, 599, 540);
+		setBounds(100, 100, 689, 572);
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		this.setClosable(true);
+		this.setClosable(false);
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
@@ -214,23 +214,27 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		pnlDireccionDomiciliaria.setBorder(titleDireccionDomiciliaria);
 
 		GroupLayout gl_pageCliente = new GroupLayout(pageCliente);
-		gl_pageCliente.setHorizontalGroup(gl_pageCliente.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pageCliente.createSequentialGroup().addContainerGap()
-						.addGroup(gl_pageCliente.createParallelGroup(Alignment.LEADING)
-								.addComponent(pnlDireccionDomiciliaria, 0, 0, Short.MAX_VALUE)
-								.addGroup(gl_pageCliente.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(pnlDatosContacto, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-										.addComponent(pnlDatosPersonales, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
-												522, Short.MAX_VALUE)))
-						.addGap(80)));
-		gl_pageCliente.setVerticalGroup(gl_pageCliente.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pageCliente.createSequentialGroup().addContainerGap()
-						.addComponent(pnlDatosPersonales, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnlDatosContacto, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnlDireccionDomiciliaria, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-						.addContainerGap()));
+		gl_pageCliente.setHorizontalGroup(
+			gl_pageCliente.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_pageCliente.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pageCliente.createParallelGroup(Alignment.TRAILING)
+						.addComponent(pnlDireccionDomiciliaria, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
+						.addComponent(pnlDatosContacto, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
+						.addComponent(pnlDatosPersonales, GroupLayout.PREFERRED_SIZE, 629, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		gl_pageCliente.setVerticalGroup(
+			gl_pageCliente.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pageCliente.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(pnlDatosPersonales, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnlDatosContacto, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnlDireccionDomiciliaria, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+					.addContainerGap())
+		);
 
 		JLabel lblNewLabel_3 = new JLabel("Direcci\u00F3n Domicilaria");
 
@@ -245,30 +249,38 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		textField_8 = new JTextField();
 		textField_8.setColumns(10);
 		GroupLayout gl_pnlDireccionDomiciliaria = new GroupLayout(pnlDireccionDomiciliaria);
-		gl_pnlDireccionDomiciliaria.setHorizontalGroup(gl_pnlDireccionDomiciliaria
-				.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnlDireccionDomiciliaria.createSequentialGroup().addContainerGap()
-						.addGroup(gl_pnlDireccionDomiciliaria.createParallelGroup(Alignment.LEADING)
-								.addComponent(scrollPane_2, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
-								.addComponent(lblNewLabel_3)
-								.addComponent(lblDireccinDelTrabajo, GroupLayout.PREFERRED_SIZE, 145,
-										GroupLayout.PREFERRED_SIZE)
-								.addGroup(
-										gl_pnlDireccionDomiciliaria.createSequentialGroup().addComponent(lblNewLabel_4)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(textField_8))
-								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 495, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap()));
-		gl_pnlDireccionDomiciliaria.setVerticalGroup(gl_pnlDireccionDomiciliaria.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnlDireccionDomiciliaria.createSequentialGroup().addContainerGap()
-						.addComponent(lblNewLabel_3).addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(gl_pnlDireccionDomiciliaria.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_4).addComponent(textField_8, GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(9).addComponent(lblDireccinDelTrabajo).addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap()));
+		gl_pnlDireccionDomiciliaria.setHorizontalGroup(
+			gl_pnlDireccionDomiciliaria.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlDireccionDomiciliaria.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnlDireccionDomiciliaria.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+						.addComponent(scrollPane_2, GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_3)
+						.addComponent(lblDireccinDelTrabajo, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_pnlDireccionDomiciliaria.createSequentialGroup()
+							.addComponent(lblNewLabel_4)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_8, 361, 361, 361)))
+					.addContainerGap())
+		);
+		gl_pnlDireccionDomiciliaria.setVerticalGroup(
+			gl_pnlDireccionDomiciliaria.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlDireccionDomiciliaria.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblNewLabel_3)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_pnlDireccionDomiciliaria.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel_4)
+						.addComponent(textField_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addComponent(lblDireccinDelTrabajo)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
 
 		JTextArea textArea_1 = new JTextArea();
 		scrollPane_2.setViewportView(textArea_1);
@@ -297,52 +309,50 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		textField_7 = new JTextField();
 		textField_7.setColumns(10);
 		GroupLayout gl_pnlDatosContacto = new GroupLayout(pnlDatosContacto);
-		gl_pnlDatosContacto.setHorizontalGroup(gl_pnlDatosContacto.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnlDatosContacto.createSequentialGroup().addContainerGap().addGroup(gl_pnlDatosContacto
-						.createParallelGroup(Alignment.LEADING)
+		gl_pnlDatosContacto.setHorizontalGroup(
+			gl_pnlDatosContacto.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlDatosContacto.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnlDatosContacto.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pnlDatosContacto.createSequentialGroup()
-								.addComponent(lblCorreoElectronico, GroupLayout.PREFERRED_SIZE, 130,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblCorreoElectronico, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_pnlDatosContacto.createSequentialGroup()
-								.addComponent(lblCelular, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblCelular, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_pnlDatosContacto.createSequentialGroup()
-								.addComponent(lblCelular_1, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblCelular_1, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_pnlDatosContacto.createSequentialGroup()
-								.addComponent(lblConvencional, GroupLayout.PREFERRED_SIZE, 130,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED).addComponent(textField_7,
-										GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(265, Short.MAX_VALUE)));
-		gl_pnlDatosContacto
-				.setVerticalGroup(
-						gl_pnlDatosContacto.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_pnlDatosContacto.createSequentialGroup().addContainerGap()
-										.addGroup(gl_pnlDatosContacto.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblCorreoElectronico).addComponent(textField_4,
-														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addGroup(gl_pnlDatosContacto.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblCelular)
-												.addComponent(textField_5, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addGroup(gl_pnlDatosContacto.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblCelular_1)
-												.addComponent(textField_6, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addGroup(gl_pnlDatosContacto.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblConvencional).addComponent(textField_7,
-														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE))
-										.addContainerGap(35, Short.MAX_VALUE)));
+							.addComponent(lblConvencional, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(238, Short.MAX_VALUE))
+		);
+		gl_pnlDatosContacto.setVerticalGroup(
+			gl_pnlDatosContacto.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlDatosContacto.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnlDatosContacto.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCorreoElectronico)
+						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_pnlDatosContacto.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCelular)
+						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_pnlDatosContacto.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCelular_1)
+						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_pnlDatosContacto.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblConvencional)
+						.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(29, Short.MAX_VALUE))
+		);
 		pnlDatosContacto.setLayout(gl_pnlDatosContacto);
 
 		JLabel label_2 = new JLabel("APELLIDOS");
@@ -375,68 +385,81 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 
 		JComboBox comboBox = new JComboBox(ValoresMaestros.ESTADO_CIVIL);
 		GroupLayout gl_pnlDatosPersonales = new GroupLayout(pnlDatosPersonales);
-		gl_pnlDatosPersonales.setHorizontalGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addContainerGap().addGroup(gl_pnlDatosPersonales
-						.createParallelGroup(Alignment.LEADING)
+		gl_pnlDatosPersonales.setHorizontalGroup(
+			gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
-								.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
-								.addGap(10)
-								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
-								.addGap(18)
-								.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
-								.addGap(10)
-								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
-								.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
-										.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 107,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblFechaNacimiento, GroupLayout.PREFERRED_SIZE, 107,
-												GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addGap(10)
-												.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 96,
-														GroupLayout.PREFERRED_SIZE)
-												.addGap(18)
-												.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 89,
-														GroupLayout.PREFERRED_SIZE)
-												.addGap(10).addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE,
-														159, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblFechaNacimiento, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
+										.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 203, GroupLayout.PREFERRED_SIZE)
+										.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+									.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
+										.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+										.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE))
+									.addGap(18)
+									.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.TRAILING, false)
 										.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.RELATED)
-												.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
-														.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 203,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)))))
-						.addComponent(lblEstadoCivil, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(115, Short.MAX_VALUE)));
-		gl_pnlDatosPersonales.setVerticalGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addContainerGap()
-						.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addGap(3).addComponent(label_2))
-								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addGap(3).addComponent(label_4))
-								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(11)
-						.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING).addComponent(label_3)
-								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addGap(3).addComponent(label_5))
-								.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addGap(24)
-										.addComponent(lblFechaNacimiento))
-								.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addGap(18).addComponent(
-										dateChooser, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)))
-						.addGap(18)
-						.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblEstadoCivil).addComponent(comboBox, GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(31)));
+											.addComponent(label_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
+										.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+											.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)))
+									.addGap(18))))
+						.addComponent(lblEstadoCivil, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_pnlDatosPersonales.setVerticalGroup(
+			gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+							.addGap(3)
+							.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
+								.addComponent(label_2)
+								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+							.addGap(3)
+							.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
+								.addComponent(label_4)
+								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+							.addGap(11)
+							.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
+								.addComponent(label_3)
+								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(6)
+							.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+									.addGap(24)
+									.addComponent(lblFechaNacimiento))
+								.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+									.addGap(18)
+									.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)))
+							.addGap(18)
+							.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblEstadoCivil)
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
+								.addComponent(label_5)
+								.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addGap(31))
+		);
 		pnlDatosPersonales.setLayout(gl_pnlDatosPersonales);
 		pageCliente.setLayout(gl_pageCliente);
 
@@ -688,11 +711,11 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		gl_pnlContraFactura.setHorizontalGroup(
 			gl_pnlContraFactura.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlContraFactura.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_pnlContraFactura.createParallelGroup(Alignment.LEADING)
-						.addComponent(pnlEntidadBancaria, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
-						.addComponent(pnlTarjetaCredito, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(13, Short.MAX_VALUE))
+					.addGap(56)
+					.addGroup(gl_pnlContraFactura.createParallelGroup(Alignment.TRAILING)
+						.addComponent(pnlTarjetaCredito, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
+						.addComponent(pnlEntidadBancaria, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(57, Short.MAX_VALUE))
 		);
 		gl_pnlContraFactura.setVerticalGroup(
 			gl_pnlContraFactura.createParallelGroup(Alignment.LEADING)
@@ -701,7 +724,7 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 					.addComponent(pnlEntidadBancaria, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(pnlTarjetaCredito, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(125, Short.MAX_VALUE))
+					.addContainerGap(157, Short.MAX_VALUE))
 		);
 		
 		JLabel lblNewLabel_2 = new JLabel("NOMBRE ENTIDAD BANCARIA");

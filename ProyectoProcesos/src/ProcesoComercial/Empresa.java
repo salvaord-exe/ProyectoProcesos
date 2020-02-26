@@ -14,7 +14,7 @@ public class Empresa {
 	
 	public Empresa() {
 		
-		Usuario oUsuario0 = new Usuario("ADMINISTRADOR");
+		Usuario oUsuario0 = new Usuario();
 		this.agregarUsuario(oUsuario0,"admin","admin");
 		
 	}

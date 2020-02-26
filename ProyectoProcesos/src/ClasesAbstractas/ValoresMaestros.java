@@ -17,7 +17,9 @@ public class ValoresMaestros {
 	public final static String TIPOS_SUPERVISOR_ASESOR[] = {"CALL CENTER", "CAMPO", "REDES SOCIALES"};
 	
 	//Valores para interfaz credenciales
-	public final static String TIPOS_USUARIOS[] = {"SUPERVISOR", "ASESOR", "OPERADOR"};
+	public final static String TIPOS_CARGOS[] = {"SUPERVISOR", "ASESOR", "OPERADOR"};
+	
+	public final static String TIPOS_USUARIOS[] = {"ADMINISTRADOR","EDITOR/OBSERVADOR","OBSERVADOR"};
 	
 	//Valores
 	public final static String ESTADO_CIVIL[] = {"SOLTERO/A","CASADO/A","UNION LIBRE","VIUDO/A"};
@@ -47,5 +49,8 @@ public class ValoresMaestros {
 	public final static String POSPAGO_MAS_MINUTOS[]= {"PLAN CLARO 18 MAS MINUTOS",""};
 	
 	public final static String POSPAGO_EMPRESARIAL_SIN_LIMITE[]= {"EMPRESA SIN LIMITE 15 ON AUT","EMPRESA SIN LIMITE 20 ON AUT","EMPRESA SIN LIMITE 25 MD AUT","EMPRESA SIN LIMITE 35 MD AUT"};
+	
+	public final static String COLUMNAS_MATRIZ_VENTAS[]= {"ID","NOMBRE DEL CLIENTE","CEDULA CLIENTE","NUM SOLICITUD CREDITO","PLAN POSPAGO","VALOR DE LA VENTA","CELULAR 1 CLIENTE","CORREO CLIENTE","ASESOR","SUPERVISOR"};
+	
 	
 }
