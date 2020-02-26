@@ -24,7 +24,8 @@ public class AsesorComercial extends Persona {
 
 	// Atributos de relaciones
 	private List<Venta> lstVentas = new ArrayList<Venta>();
-	private Usuario oCredenciales;
+	private Usuario oUsuario;
+	
 	
 	//Constructores
 	
@@ -79,12 +80,16 @@ public class AsesorComercial extends Persona {
 		this.lstVentas = lstVentas;
 	}
 
-	public Usuario getoCredenciales() {
-		return oCredenciales;
+
+	public Usuario getoUsuario() {
+		return oUsuario;
 	}
 
-	public void setoCredenciales(Usuario oCredenciales) {
-		this.oCredenciales = oCredenciales;
+
+	public void setoUsuario(Usuario oUsuario) {
+		this.oUsuario = oUsuario;
 	}
+
+	
 	
 }

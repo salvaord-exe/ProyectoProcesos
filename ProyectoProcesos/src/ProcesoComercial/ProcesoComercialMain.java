@@ -3,6 +3,7 @@ package ProcesoComercial;
 import java.awt.EventQueue;
 import java.util.Date;
 
+import Actores.*;
 import Actores.Cliente;
 import ClasesAbstractas.*;
 import InterfazGrafica.FrmProcesoComercial;
@@ -12,16 +13,29 @@ public class ProcesoComercialMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("hola mundo");
 		ValoresMaestros oValoresMaestros = new ValoresMaestros();
+		
+		//Creacion usuario asesor comercial
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					FrmProcesoComercial frame = new FrmProcesoComercial();
-					System.out.println("hola mundo");
-							
+					
+					
+					
 							
 				} catch (Exception e) {
 					e.printStackTrace();

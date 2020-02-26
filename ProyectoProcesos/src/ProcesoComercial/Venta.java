@@ -1,6 +1,7 @@
 package ProcesoComercial;
 
 import Actores.*;
+import InterfazGrafica.ItnFrmFormularioIngresoVenta;
 
 public class Venta {
 	//Atributos propios de la clase
@@ -13,6 +14,7 @@ public class Venta {
 	private Cliente oCliente;
 	private Servicio oServicio;
 	private FormaPago oFormaPago;
+	private ItnFrmFormularioIngresoVenta oItnFrmFormularioIngresoVenta;
 	
 	//constructores//
 	

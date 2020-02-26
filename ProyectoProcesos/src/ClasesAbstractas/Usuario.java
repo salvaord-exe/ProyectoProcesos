@@ -19,7 +19,7 @@ public class Usuario {
 
 	}
 
-
+	
 
 	public Usuario(String user, String password, String userTipe) {
 		super();

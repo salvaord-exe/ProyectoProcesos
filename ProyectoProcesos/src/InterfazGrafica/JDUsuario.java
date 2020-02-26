@@ -65,6 +65,7 @@ public class JDUsuario extends JDialog {
 	private JTextArea txtAreaDireccionLaboral;
 	private JTextArea txtAreaDireccionDomiciliaria;
 	private JTextField txtReferenciaInstalacion;
+	private JComboBox cmbxCargo;
 
 	/**
 	 * Launch the application.
@@ -82,7 +83,7 @@ public class JDUsuario extends JDialog {
 			this.constructorIniciarSesion();// aqui se crea el dialogo iniciar sesion
 
 		}
-	
+		
 
 	}
 
@@ -401,7 +402,7 @@ public class JDUsuario extends JDialog {
 		
 		JLabel lblNewLabel_2 = new JLabel("CARGO");
 		
-		JComboBox cmbxCargo = new JComboBox(ValoresMaestros.TIPOS_CARGOS);
+		cmbxCargo = new JComboBox(ValoresMaestros.TIPOS_CARGOS);
 		
 		JLabel lblNewLabel_6 = new JLabel("CORREO CORPORATIVO");
 		
@@ -461,6 +462,7 @@ public class JDUsuario extends JDialog {
 				JButton btnCrearUsuario = new JButton("CREAR USUARIO");
 				btnCrearUsuario.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						//getThis().getoFrmProcesoComercial().almacenarDatosUsuario(getThis());
 					}
 				});
 				btnCrearUsuario.setActionCommand("OK");
@@ -737,6 +739,14 @@ public class JDUsuario extends JDialog {
 
 	public JPanel getContentPanel() {
 		return contentPanel;
+	}
+
+	public JComboBox getCmbxCargo() {
+		return cmbxCargo;
+	}
+
+	public void setCmbxCargo(JComboBox cmbxCargo) {
+		this.cmbxCargo = cmbxCargo;
 	}
 	
 	

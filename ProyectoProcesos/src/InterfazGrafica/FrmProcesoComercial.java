@@ -9,7 +9,8 @@ import java.awt.Image;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-
+import Actores.AsesorComercial;
+import Actores.Supervisor;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -60,8 +61,36 @@ public class FrmProcesoComercial extends JFrame {
 	public FrmProcesoComercial() {
 		
 		this.oEmpresa = new Empresa();
-		this.setoEmpresa(oEmpresa);
 		this.oEmpresa.setoFrmProcesoComercial(getThis());
+		this.setoEmpresa(oEmpresa);
+		
+		
+		
+		//Se agrega usuarios para prueba
+		Usuario oUsuario0 = new Usuario();
+		AsesorComercial oAsesorComercial0 = new AsesorComercial();
+		oAsesorComercial0.setNombre("ORDOÑEZ LOOR SALVADOR ISAI");
+		oAsesorComercial0.setCorreoCorporativo("salvador.ordonez@claronegocios.ec");
+		oUsuario0.setoAsesorComercial(oAsesorComercial0);
+		oAsesorComercial0.setoUsuario(oUsuario0);
+		
+		Usuario oUsuario1 = new Usuario();
+		Supervisor oSupervisor = new Supervisor();
+		oSupervisor.setNombre("QUIÑONEZ BIANCA");
+		oSupervisor.setCorreoCorporativo("bianca.quinonez@claronegocios.ec");
+		oUsuario1.setoSupervisor(oSupervisor);
+		oSupervisor.setoUsuario(oUsuario1);
+		
+		
+		oSupervisor.addAsesorComercial(oAsesorComercial0);
+		oAsesorComercial0.setoSupervisor(oSupervisor);
+		
+		this.getoEmpresa().getLstUsuarios().add(oUsuario0);
+		this.getoEmpresa().getLstUsuarios().add(oUsuario1);
+		this.getoEmpresa().getLstAsesoresComerciales().add(oAsesorComercial0);
+		this.getoEmpresa().getLstSupervisores().add(oSupervisor);
+		
+		
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -179,10 +208,10 @@ public class FrmProcesoComercial extends JFrame {
 			JOptionPane.showMessageDialog(null, "Solo puede ingresar una venta a la vez.\nCierre la anterior ventana para ingresar una nueva venta.", 
 					"Error ingreso de venta", JOptionPane.ERROR_MESSAGE);
 		} else {
-			this.oItnFrmFormularioIngresoVenta = new ItnFrmFormularioIngresoVenta();
+			this.oItnFrmFormularioIngresoVenta = new ItnFrmFormularioIngresoVenta(getThis());
 			
 			this.setoItnFrmFormularioIngresoVenta(this.oItnFrmFormularioIngresoVenta);
-			this.getoItnFrmFormularioIngresoVenta().setoFrmProcesoComercial(getThis());
+			this.oItnFrmFormularioIngresoVenta.setoFrmProcesoComercial(getThis());
 			
 			this.desktopPane.add(oItnFrmFormularioIngresoVenta);
 			
@@ -238,9 +267,17 @@ public class FrmProcesoComercial extends JFrame {
 	}
 	
 	
+	
 	public void almacenarDatosUsuario(String tipoUsuario) {
 		switch (tipoUsuario) {
-		
+		case "SUPERVISOR":
+			
+			break;
+			
+		case "ASESOR":
+			break;
+		case "OPERADOR":
+			break;
 		}
 	}
 	

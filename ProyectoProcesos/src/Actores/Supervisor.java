@@ -15,9 +15,10 @@ public class Supervisor extends Persona {
 	private String correoCorporativo;
 	private String tipoSupervisor;
 	
+	
 	// Atributos de relaciones
 	private List<AsesorComercial> lstAsesores = new ArrayList<AsesorComercial>();
-	
+	private Usuario oUsuario;
 	
 	// Constructores
 	public Supervisor(String nombre, String tipoDocumento, String documento, String celular1, String celular2,
@@ -59,6 +60,10 @@ public class Supervisor extends Persona {
 	}
 
 
+	public void addAsesorComercial(AsesorComercial oAsesorComercial) {
+		this.lstAsesores.add(oAsesorComercial);
+	}
+	
 	public List<AsesorComercial> getLstAsesores() {
 		return lstAsesores;
 	}
@@ -67,4 +72,18 @@ public class Supervisor extends Persona {
 	public void setLstAsesores(List<AsesorComercial> lstAsesores) {
 		this.lstAsesores = lstAsesores;
 	}
+
+
+
+	public Usuario getoUsuario() {
+		return oUsuario;
+	}
+
+
+
+	public void setoUsuario(Usuario oUsuario) {
+		this.oUsuario = oUsuario;
+	}
+	
+	
 }
