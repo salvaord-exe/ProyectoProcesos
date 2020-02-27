@@ -22,7 +22,7 @@ public abstract class Persona {
 	private String direccionTrabajo; //Si es que tiene
 	private String sexo;
 	private Date fechaNacimiento;
-	
+	private String estadoCivil;
 	
 	
 	/*
@@ -203,6 +203,14 @@ public abstract class Persona {
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
 	}
 	
 	

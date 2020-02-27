@@ -111,6 +111,10 @@ public class FrmProcesoComercial extends JFrame {
 		this.construirMenu();
 		this.construirDesktopPane();
 		
+		this.oItnFrmMatrizVentas = new ItnFrmMatrizVentas();
+		this.setoItnFrmMatrizVentas(this.oItnFrmMatrizVentas);
+		this.getoItnFrmMatrizVentas().setoFrmProcesoComercial(getThis());
+		this.desktopPane.add(this.oItnFrmMatrizVentas);
 		
 		
 	}
@@ -238,14 +242,11 @@ public class FrmProcesoComercial extends JFrame {
 	}
 
 	public void addItnFrmMatrizVentas() {
-		if(this.getoItnFrmMatrizVentas()!=null) {
+		if(this.getoItnFrmMatrizVentas().isVisible()) {
 			JOptionPane.showMessageDialog(null, "Solo puede tener una matriz de ventas abierta a la vez.", 
 					"Error de matriz de ventas", JOptionPane.ERROR_MESSAGE);
 		}else {
-			this.oItnFrmMatrizVentas = new ItnFrmMatrizVentas();
-			this.setoItnFrmMatrizVentas(this.oItnFrmMatrizVentas);
-			this.getoItnFrmMatrizVentas().setoFrmProcesoComercial(getThis());
-			this.desktopPane.add(this.oItnFrmMatrizVentas);
+			
 			this.oItnFrmMatrizVentas.setVisible(true);
 			this.oItnFrmMatrizVentas.setSize(this.desktopPane.getSize());
 			this.oItnFrmMatrizVentas.setLocation(0,0);

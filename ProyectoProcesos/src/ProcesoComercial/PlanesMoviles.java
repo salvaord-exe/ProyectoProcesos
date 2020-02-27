@@ -6,9 +6,9 @@ public class PlanesMoviles {
 	//Atributos propio de la clase
 	private String tipoServicioMovil; //Puede ser: "PORTABILIDAD PREPAGO", "PORTABILIDAD POSPAGO", "MIGRACION", "LINEA NUEVA",
 	private String codigoNIP; //Este codigo solo es aplicable para "PORTABILIDAD PREPAGO"
-	private String planLineaMovil[];
+	private String planLineaMovil;
 	private String subPlanLineaMovil[];
-	private String operadoraDonante[]; //Puede ser: "CNT", "MOVISTAR", "TUENTI", esto solamente aplica cuando el tipoServicioMovil es PROTABILIDAD
+	private String operadoraDonante; //Puede ser: "CNT", "MOVISTAR", "TUENTI", esto solamente aplica cuando el tipoServicioMovil es PROTABILIDAD
 	private double buzonVoz; //valor de cobro por servicio de buzon
 	private boolean deseaBuzonVoz;
 	private boolean deseaServicioPromocional;//Hay un valor que se cobra si se maneja los servicios promocionales
@@ -24,8 +24,8 @@ public class PlanesMoviles {
 	
 	//constructor//
 	
-	public PlanesMoviles(String tipoServicioMovil, String codigoNIP, String[] planLineaMovil,
-			String[] subPlanLineaMovil, String[] operadoraDonante, double buzonVoz, boolean deseaBuzonVoz,
+	public PlanesMoviles(String tipoServicioMovil, String codigoNIP, String planLineaMovil,
+			String[] subPlanLineaMovil, String operadoraDonante, double buzonVoz, boolean deseaBuzonVoz,
 			boolean deseaServicioPromocional, String[] servicioPromocional, boolean numeroPropio, PDF cesionDerechos,
 			PDF cedulaActualTitular, Imagen cedActualTitularFrontal, Imagen cedActualTitularPosterior,
 			Servicio oServicio) {
@@ -49,6 +49,10 @@ public class PlanesMoviles {
 	
 	//getters y setters//
 
+	public PlanesMoviles() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getTipoServicioMovil() {
 		return tipoServicioMovil;
 	}
@@ -65,11 +69,11 @@ public class PlanesMoviles {
 		this.codigoNIP = codigoNIP;
 	}
 
-	public String[] getPlanLineaMovil() {
+	public String getPlanLineaMovil() {
 		return planLineaMovil;
 	}
 
-	public void setPlanLineaMovil(String[] planLineaMovil) {
+	public void setPlanLineaMovil(String planLineaMovil) {
 		this.planLineaMovil = planLineaMovil;
 	}
 
@@ -81,11 +85,11 @@ public class PlanesMoviles {
 		this.subPlanLineaMovil = subPlanLineaMovil;
 	}
 
-	public String[] getOperadoraDonante() {
+	public String getOperadoraDonante() {
 		return operadoraDonante;
 	}
 
-	public void setOperadoraDonante(String[] operadoraDonante) {
+	public void setOperadoraDonante(String operadoraDonante) {
 		this.operadoraDonante = operadoraDonante;
 	}
 

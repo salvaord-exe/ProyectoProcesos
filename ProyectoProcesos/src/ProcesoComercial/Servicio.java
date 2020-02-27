@@ -5,24 +5,31 @@ import java.util.List;
 
 public class Servicio {
 	
-	private String tipoServicio[]; //Solo será "MOVIL"
+	private String tipoServicio; //Solo será "MOVIL"
 	private int lineasSolicitadas; //Puede ser entre 1 y 4 lineas moviles
-	private String lstNumPortarMigrar[] = new String[4];
+	private String numPortarMigrar;
 	private PlanesMoviles lstPlanesMoviles[] = new PlanesMoviles[4];
+	private Venta oVenta;
 	
 	//constructores
 	
-	public Servicio(String[] tipoServicio, int lineasSolicitadas, String[] lstNumPortarMigrar,
+	public Servicio(String tipoServicio, int lineasSolicitadas, String[] lstNumPortarMigrar,
 			PlanesMoviles[] lstPlanesMoviles) {
 		super();
 		this.tipoServicio = tipoServicio;
 		this.lineasSolicitadas = lineasSolicitadas;
-		this.lstNumPortarMigrar = lstNumPortarMigrar;
+		this.numPortarMigrar = numPortarMigrar;
 		this.lstPlanesMoviles = lstPlanesMoviles;
 	}
 
 	//metodos//
 	
+	public Servicio() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+
 	public boolean validarCantidadLineas(int cantidad) {
 		if (cantidad>4||cantidad<1) {
 			return false;
@@ -33,12 +40,12 @@ public class Servicio {
 	
 	//getters y setters
 	
-	public String[] getTipoServicio() {
+	public String getTipoServicio() {
 		return tipoServicio;
 	}
 
-	public void setTipoServicio(String[] tipoServicio) {
-		this.tipoServicio = tipoServicio;
+	public void setTipoServicio(String string) {
+		this.tipoServicio = string;
 	}
 
 	public int getLineasSolicitadas() {
@@ -49,14 +56,6 @@ public class Servicio {
 		this.lineasSolicitadas = lineasSolicitadas;
 	}
 
-	public String[] getLstNumPortarMigrar() {
-		return lstNumPortarMigrar;
-	}
-
-	public void setLstNumPortarMigrar(String[] lstNumPortarMigrar) {
-		this.lstNumPortarMigrar = lstNumPortarMigrar;
-	}
-
 	public PlanesMoviles[] getLstPlanesMoviles() {
 		return lstPlanesMoviles;
 	}
@@ -65,6 +64,23 @@ public class Servicio {
 		this.lstPlanesMoviles = lstPlanesMoviles;
 	}
 
+	public String getNumPortarMigrar() {
+		return numPortarMigrar;
+	}
+
+	public void setNumPortarMigrar(String numPortarMigrar) {
+		this.numPortarMigrar = numPortarMigrar;
+	}
+
+	public Venta getoVenta() {
+		return oVenta;
+	}
+
+	public void setoVenta(Venta oVenta) {
+		this.oVenta = oVenta;
+	}
+	
+	
 
 
 	

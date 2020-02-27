@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
@@ -74,11 +75,15 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 	private RSDateChooser dateFechaNacimientoCliente;
 	private JComboBox cmbxTipoDocumentoCliente;
 	private JFormattedTextField ftxtNumDocumentoCliente;
-	private JComboBox comboBox;
+	private JComboBox cmbxEstadoCivilCliente;
 	private JComboBox cmbxAsesor;
 	private JComboBox cmbxSupervisor;
 	private int cantidadAsesores;
 	private int cantidadSupervisores;
+	private JTextArea txtAreaDireccionDomicilioCliente;
+	private JTextArea txtAreaDireccionLaboralCliente;
+	private JComboBox cmbxEstadoVenta;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -116,13 +121,17 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		getContentPane().add(panel_1, BorderLayout.SOUTH);
 
 		JButton btnEnviar = new JButton("Enviar");
+		
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (getThis().validarIngresoFormulario()) {
-
+					getThis().getoFrmProcesoComercial().getoEmpresa().ingresarVenta(getThis());
+				}else {
+					JOptionPane.showMessageDialog(null, "Faltan campos por llenar", "ERROR DE ENVIO", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
+		
 		panel_1.add(btnEnviar);
 
 		JButton btnCancelar = new JButton("Cancelar");
@@ -146,14 +155,14 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 
 		JPanel panel_1 = new JPanel();
 		pnlVendedor.add(panel_1, BorderLayout.CENTER);
-
-		JLabel label = new JLabel("ASESOR");
+		
+		JLabel lblAsesor = new JLabel("ASESOR*");
 
 		cmbxAsesor = new JComboBox();
 		this.cargarListaAsesoresComerciales();
 		
 
-		JLabel label_1 = new JLabel("SUPERVISOR");
+		JLabel lblSupervisor = new JLabel("SUPERVISOR*");
 
 		cmbxSupervisor = new JComboBox();
 
@@ -173,48 +182,83 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		txtCorreoAsesor = new JTextField();
 		txtCorreoAsesor.setColumns(10);
 		txtCorreoAsesor.setEditable(false);
+		
+		JLabel lblEstadoDeLa = new JLabel("ESTADO DE LA VENTA");
+		
+		cmbxEstadoVenta = new JComboBox(ValoresMaestros.ESTADO_VENTA);
+		cmbxEstadoVenta.setEnabled(false);
+		cmbxEstadoVenta.setSelectedItem(ValoresMaestros.ESTADO_VENTA[0]);
+		
+		JLabel lblNewLabel_9 = new JLabel("NUM SOLICITUD CREDITO");
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setEnabled(false);
+		textField.setColumns(10);
 
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGap(0, 847, Short.MAX_VALUE)
-				.addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addGroup(gl_panel_1
-						.createParallelGroup(Alignment.LEADING)
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(gl_panel_1.createSequentialGroup().addComponent(label)
-										.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addComponent(cmbxAsesor, GroupLayout.PREFERRED_SIZE, 216,
-												GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel_1.createSequentialGroup().addComponent(label_1)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(cmbxSupervisor,
-												GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addComponent(lblAsesor)
+								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(cmbxAsesor, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addComponent(lblSupervisor)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(cmbxSupervisor, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_panel_1.createSequentialGroup()
-								.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addComponent(label_2)
-										.addComponent(label_3))
-								.addGap(28)
-								.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtCorreoSupervisor, GroupLayout.PREFERRED_SIZE, 263,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(txtCorreoAsesor, GroupLayout.PREFERRED_SIZE, 263,
-												GroupLayout.PREFERRED_SIZE))))
-						.addContainerGap(443, Short.MAX_VALUE)));
-		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGap(0, 253, Short.MAX_VALUE)
-				.addGroup(gl_panel_1.createSequentialGroup().addContainerGap()
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(label).addComponent(
-								cmbxAsesor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(label_1).addComponent(
-								cmbxSupervisor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-						.addGap(27)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(label_2).addComponent(
-								txtCorreoAsesor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(label_3).addComponent(
-								txtCorreoSupervisor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(99, Short.MAX_VALUE)));
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(label_2)
+								.addComponent(label_3))
+							.addGap(28)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtCorreoSupervisor, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtCorreoAsesor, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+								.addComponent(lblNewLabel_9)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(textField))
+							.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+								.addComponent(lblEstadoDeLa, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(cmbxEstadoVenta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(264, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblAsesor)
+						.addComponent(cmbxAsesor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblSupervisor)
+						.addComponent(cmbxSupervisor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(27)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label_2)
+						.addComponent(txtCorreoAsesor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label_3)
+						.addComponent(txtCorreoSupervisor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEstadoDeLa)
+						.addComponent(cmbxEstadoVenta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel_9)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(234, Short.MAX_VALUE))
+		);
 		panel_1.setLayout(gl_panel_1);
 
 		//Escuchadores
@@ -237,11 +281,6 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 						}
 					}
 				}
-				
-				
-
-				nombreAsesor = "";
-				correoAsesor = "";
 			}
 		});
 		
@@ -313,7 +352,7 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 						.addComponent(pnlDireccionDomiciliaria, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
 						.addContainerGap()));
 
-		JLabel lblNewLabel_3 = new JLabel("Direcci\u00F3n Domicilaria");
+		JLabel lblNewLabel_3 = new JLabel("Direcci\u00F3n Domicilaria*");
 
 		JScrollPane scrollPane = new JScrollPane();
 
@@ -321,7 +360,7 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 
 		JScrollPane scrollPane_2 = new JScrollPane();
 
-		JLabel lblNewLabel_4 = new JLabel("Referencia para instalaci\u00F3n");
+		JLabel lblNewLabel_4 = new JLabel("Referencia para instalaci\u00F3n*");
 
 		txtReferenciaInstalacionCliente = new JTextField();
 		txtReferenciaInstalacionCliente.setColumns(10);
@@ -352,19 +391,19 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 						.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap()));
 
-		JTextArea txtAreaDireccionLaboralCliente = new JTextArea();
+		txtAreaDireccionLaboralCliente = new JTextArea();
 		scrollPane_2.setViewportView(txtAreaDireccionLaboralCliente);
 
-		JTextArea txtAreaDireccionDomicilioCliente = new JTextArea();
+		txtAreaDireccionDomicilioCliente = new JTextArea();
 		scrollPane.setViewportView(txtAreaDireccionDomicilioCliente);
 		pnlDireccionDomiciliaria.setLayout(gl_pnlDireccionDomiciliaria);
 
-		JLabel lblCorreoElectronico = new JLabel("CORREO ELECTRONICO");
+		JLabel lblCorreoElectronico = new JLabel("CORREO ELECTRONICO*");
 
 		txtCorreoElectronicoCliente = new JTextField();
 		txtCorreoElectronicoCliente.setColumns(10);
 
-		JLabel lblCelular = new JLabel("CELULAR 1");
+		JLabel lblCelular = new JLabel("CELULAR 1*");
 
 		txtCelular1Cliente = new JTextField();
 		txtCelular1Cliente.setColumns(10);
@@ -423,21 +462,21 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 						.addContainerGap(29, Short.MAX_VALUE)));
 		pnlDatosContacto.setLayout(gl_pnlDatosContacto);
 
-		JLabel label_2 = new JLabel("APELLIDOS");
+		JLabel lblApellidos = new JLabel("APELLIDOS*");
 
 		txtApellidosCliente = new JTextField();
 		txtApellidosCliente.setColumns(10);
 
-		JLabel label_3 = new JLabel("TIPO DE DOCUMENTO");
+		JLabel lblTipoDeDocumento = new JLabel("TIPO DE DOCUMENTO*");
 
 		cmbxTipoDocumentoCliente = new JComboBox(ValoresMaestros.TIPOS_DOCUMENTOS);
 
-		JLabel label_4 = new JLabel("NOMBRES");
+		JLabel lblNombres = new JLabel("NOMBRES*");
 
 		txtNombresCliente = new JTextField();
 		txtNombresCliente.setColumns(10);
 
-		JLabel label_5 = new JLabel("NUM DOCUMENTO");
+		JLabel lblNumDocumento = new JLabel("NUM DOCUMENTO*");
 
 		ftxtNumDocumentoCliente = new JFormattedTextField();
 
@@ -447,11 +486,11 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		dateFechaNacimientoCliente.setColorButtonHover(Color.GRAY);
 		dateFechaNacimientoCliente.setColorBackground(Color.GRAY);
 
-		JLabel lblFechaNacimiento = new JLabel("FECHA NACIMIENTO");
+		JLabel lblFechaNacimiento = new JLabel("FECHA NACIMIENTO*");
 
-		JLabel lblEstadoCivil = new JLabel("ESTADO CIVIL");
+		JLabel lblEstadoCivil = new JLabel("ESTADO CIVIL*");
 
-		comboBox = new JComboBox(ValoresMaestros.ESTADO_CIVIL);
+		cmbxEstadoCivilCliente = new JComboBox(ValoresMaestros.ESTADO_CIVIL);
 		GroupLayout gl_pnlDatosPersonales = new GroupLayout(pnlDatosPersonales);
 		gl_pnlDatosPersonales.setHorizontalGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addContainerGap().addGroup(gl_pnlDatosPersonales
@@ -460,14 +499,14 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 								.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblFechaNacimiento, GroupLayout.PREFERRED_SIZE, 107,
 												GroupLayout.PREFERRED_SIZE)
-										.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 132,
+										.addComponent(lblTipoDeDocumento, GroupLayout.PREFERRED_SIZE, 132,
 												GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
 												.addPreferredGap(ComponentPlacement.RELATED)
 												.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
-														.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 203,
+														.addComponent(cmbxEstadoCivilCliente, GroupLayout.PREFERRED_SIZE, 203,
 																GroupLayout.PREFERRED_SIZE)
 														.addComponent(dateFechaNacimientoCliente,
 																GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
@@ -483,14 +522,14 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 												.addGroup(gl_pnlDatosPersonales
 														.createParallelGroup(Alignment.TRAILING, false)
 														.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
-																.addComponent(label_4, GroupLayout.DEFAULT_SIZE,
+																.addComponent(lblNombres, GroupLayout.DEFAULT_SIZE,
 																		GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 																.addPreferredGap(ComponentPlacement.RELATED)
 																.addComponent(txtNombresCliente,
 																		GroupLayout.PREFERRED_SIZE, 194,
 																		GroupLayout.PREFERRED_SIZE))
 														.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
-																.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 108,
+																.addComponent(lblNumDocumento, GroupLayout.PREFERRED_SIZE, 108,
 																		GroupLayout.PREFERRED_SIZE)
 																.addPreferredGap(ComponentPlacement.RELATED)
 																.addComponent(ftxtNumDocumentoCliente,
@@ -498,25 +537,25 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 																		GroupLayout.PREFERRED_SIZE)))
 												.addGap(18))))
 						.addComponent(lblEstadoCivil, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblApellidos, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		gl_pnlDatosPersonales.setVerticalGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addContainerGap()
 						.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addGap(3)
 										.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
-												.addComponent(label_2).addComponent(txtApellidosCliente,
+												.addComponent(lblApellidos).addComponent(txtApellidosCliente,
 														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 														GroupLayout.PREFERRED_SIZE)))
 								.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addGap(3)
 										.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
-												.addComponent(label_4).addComponent(txtNombresCliente,
+												.addComponent(lblNombres).addComponent(txtNombresCliente,
 														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 														GroupLayout.PREFERRED_SIZE))))
 						.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_pnlDatosPersonales.createSequentialGroup().addGap(11)
 										.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
-												.addComponent(label_3).addComponent(cmbxTipoDocumentoCliente,
+												.addComponent(lblTipoDeDocumento).addComponent(cmbxTipoDocumentoCliente,
 														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 														GroupLayout.PREFERRED_SIZE))
 										.addGap(6)
@@ -529,13 +568,13 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 																GroupLayout.PREFERRED_SIZE)))
 										.addGap(18)
 										.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblEstadoCivil).addComponent(comboBox,
+												.addComponent(lblEstadoCivil).addComponent(cmbxEstadoCivilCliente,
 														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 														GroupLayout.PREFERRED_SIZE)))
 								.addGroup(gl_pnlDatosPersonales.createSequentialGroup()
 										.addPreferredGap(ComponentPlacement.UNRELATED)
 										.addGroup(gl_pnlDatosPersonales.createParallelGroup(Alignment.BASELINE)
-												.addComponent(label_5).addComponent(ftxtNumDocumentoCliente,
+												.addComponent(lblNumDocumento).addComponent(ftxtNumDocumentoCliente,
 														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 														GroupLayout.PREFERRED_SIZE))))
 						.addGap(31)));
@@ -846,6 +885,7 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 					break;
 				case "PORTABILIDAD POSPAGO":
 					getThis().txtCodigoNIP.setEditable(false);
+					getThis().txtCodigoNIP.setText("");
 					getThis().txtNumPortarMigrar.setEditable(true);
 					getThis().cmbxOperadorDonante.setModel(new DefaultComboBoxModel(ValoresMaestros.OPERADORA_DONANTE));
 					getThis().cmbxOperadorDonante.setEnabled(true);
@@ -853,6 +893,7 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 
 				case "MIGRACION":
 					getThis().txtCodigoNIP.setEditable(false);
+					getThis().txtCodigoNIP.setText("");
 					getThis().txtNumPortarMigrar.setEditable(true);
 					getThis().cmbxOperadorDonante.setModel(new DefaultComboBoxModel());
 					getThis().cmbxOperadorDonante.setEnabled(false);
@@ -860,7 +901,10 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 
 				case "LINEA NUEVA":
 					getThis().txtCodigoNIP.setEditable(false);
+					getThis().txtCodigoNIP.setText("");
 					getThis().txtNumPortarMigrar.setEditable(false);
+					getThis().txtNumPortarMigrar.setText("");
+					
 					getThis().cmbxOperadorDonante.setModel(new DefaultComboBoxModel());
 					getThis().cmbxOperadorDonante.setEnabled(false);
 					break;
@@ -1115,4 +1159,211 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		this.oFrmProcesoComercial = oFrmProcesoComercial;
 	}
 
+	public JTextField getTxtApellidosCliente() {
+		return txtApellidosCliente;
+	}
+
+	public void setTxtApellidosCliente(JTextField txtApellidosCliente) {
+		this.txtApellidosCliente = txtApellidosCliente;
+	}
+
+	public JTextField getTxtNombresCliente() {
+		return txtNombresCliente;
+	}
+
+	public void setTxtNombresCliente(JTextField txtNombresCliente) {
+		this.txtNombresCliente = txtNombresCliente;
+	}
+
+	public JTabbedPane getFormularioPrincipal() {
+		return formularioPrincipal;
+	}
+
+	public void setFormularioPrincipal(JTabbedPane formularioPrincipal) {
+		this.formularioPrincipal = formularioPrincipal;
+	}
+
+	public Date getFechaActual() {
+		return fechaActual;
+	}
+
+	public void setFechaActual(Date fechaActual) {
+		this.fechaActual = fechaActual;
+	}
+
+	public JTextField getTxtCorreoElectronicoCliente() {
+		return txtCorreoElectronicoCliente;
+	}
+
+	public void setTxtCorreoElectronicoCliente(JTextField txtCorreoElectronicoCliente) {
+		this.txtCorreoElectronicoCliente = txtCorreoElectronicoCliente;
+	}
+
+	public JTextField getTxtCelular1Cliente() {
+		return txtCelular1Cliente;
+	}
+
+	public void setTxtCelular1Cliente(JTextField txtCelular1Cliente) {
+		this.txtCelular1Cliente = txtCelular1Cliente;
+	}
+
+	public JTextField getTxtCelular2Cliente() {
+		return txtCelular2Cliente;
+	}
+
+	public void setTxtCelular2Cliente(JTextField txtCelular2Cliente) {
+		this.txtCelular2Cliente = txtCelular2Cliente;
+	}
+
+	public JTextField getTxtConvencionalCliente() {
+		return txtConvencionalCliente;
+	}
+
+	public void setTxtConvencionalCliente(JTextField txtConvencionalCliente) {
+		this.txtConvencionalCliente = txtConvencionalCliente;
+	}
+
+	public JTextField getTxtReferenciaInstalacionCliente() {
+		return txtReferenciaInstalacionCliente;
+	}
+
+	public void setTxtReferenciaInstalacionCliente(JTextField txtReferenciaInstalacionCliente) {
+		this.txtReferenciaInstalacionCliente = txtReferenciaInstalacionCliente;
+	}
+
+	public int getLineasSolicitadas() {
+		return lineasSolicitadas;
+	}
+
+	public void setLineasSolicitadas(int lineasSolicitadas) {
+		this.lineasSolicitadas = lineasSolicitadas;
+	}
+
+	public JTextField getTxtCodigoNIP() {
+		return txtCodigoNIP;
+	}
+
+	public void setTxtCodigoNIP(JTextField txtCodigoNIP) {
+		this.txtCodigoNIP = txtCodigoNIP;
+	}
+
+	public JTextField getTxtCorreoSupervisor() {
+		return txtCorreoSupervisor;
+	}
+
+	public void setTxtCorreoSupervisor(JTextField txtCorreoSupervisor) {
+		this.txtCorreoSupervisor = txtCorreoSupervisor;
+	}
+
+	public JTextField getTxtCorreoAsesor() {
+		return txtCorreoAsesor;
+	}
+
+	public void setTxtCorreoAsesor(JTextField txtCorreoAsesor) {
+		this.txtCorreoAsesor = txtCorreoAsesor;
+	}
+
+	public JPanel getTxtNumeroPortarMigrar() {
+		return txtNumeroPortarMigrar;
+	}
+
+	public void setTxtNumeroPortarMigrar(JPanel txtNumeroPortarMigrar) {
+		this.txtNumeroPortarMigrar = txtNumeroPortarMigrar;
+	}
+
+	public RSDateChooser getDateFechaNacimientoCliente() {
+		return dateFechaNacimientoCliente;
+	}
+
+	public void setDateFechaNacimientoCliente(RSDateChooser dateFechaNacimientoCliente) {
+		this.dateFechaNacimientoCliente = dateFechaNacimientoCliente;
+	}
+
+	public JComboBox getCmbxTipoDocumentoCliente() {
+		return cmbxTipoDocumentoCliente;
+	}
+
+	public void setCmbxTipoDocumentoCliente(JComboBox cmbxTipoDocumentoCliente) {
+		this.cmbxTipoDocumentoCliente = cmbxTipoDocumentoCliente;
+	}
+
+	public JFormattedTextField getFtxtNumDocumentoCliente() {
+		return ftxtNumDocumentoCliente;
+	}
+
+	public void setFtxtNumDocumentoCliente(JFormattedTextField ftxtNumDocumentoCliente) {
+		this.ftxtNumDocumentoCliente = ftxtNumDocumentoCliente;
+	}
+
+	public JComboBox getComboBox() {
+		return cmbxEstadoCivilCliente;
+	}
+
+	public void setComboBox(JComboBox comboBox) {
+		this.cmbxEstadoCivilCliente = comboBox;
+	}
+
+	public JComboBox getCmbxAsesor() {
+		return cmbxAsesor;
+	}
+
+	public void setCmbxAsesor(JComboBox cmbxAsesor) {
+		this.cmbxAsesor = cmbxAsesor;
+	}
+
+	public JComboBox getCmbxSupervisor() {
+		return cmbxSupervisor;
+	}
+
+	public void setCmbxSupervisor(JComboBox cmbxSupervisor) {
+		this.cmbxSupervisor = cmbxSupervisor;
+	}
+
+	public int getCantidadAsesores() {
+		return cantidadAsesores;
+	}
+
+	public void setCantidadAsesores(int cantidadAsesores) {
+		this.cantidadAsesores = cantidadAsesores;
+	}
+
+	public int getCantidadSupervisores() {
+		return cantidadSupervisores;
+	}
+
+	public void setCantidadSupervisores(int cantidadSupervisores) {
+		this.cantidadSupervisores = cantidadSupervisores;
+	}
+
+	public JTextArea getTxtAreaDireccionDomicilioCliente() {
+		return txtAreaDireccionDomicilioCliente;
+	}
+
+	public void setTxtAreaDireccionDomicilioCliente(JTextArea txtAreaDireccionDomicilioCliente) {
+		this.txtAreaDireccionDomicilioCliente = txtAreaDireccionDomicilioCliente;
+	}
+
+	public JTextArea getTxtAreaDireccionLaboralCliente() {
+		return txtAreaDireccionLaboralCliente;
+	}
+
+	public void setTxtAreaDireccionLaboralCliente(JTextArea txtAreaDireccionLaboralCliente) {
+		this.txtAreaDireccionLaboralCliente = txtAreaDireccionLaboralCliente;
+	}
+
+	public JComboBox getCmbxEstadoCivilCliente() {
+		return cmbxEstadoCivilCliente;
+	}
+
+	public void setCmbxEstadoCivilCliente(JComboBox cmbxEstadoCivilCliente) {
+		this.cmbxEstadoCivilCliente = cmbxEstadoCivilCliente;
+	}
+
+	public JComboBox getCmbxEstadoVenta() {
+		return cmbxEstadoVenta;
+	}
+
+	public void setCmbxEstadoVenta(JComboBox cmbxEstadoVenta) {
+		this.cmbxEstadoVenta = cmbxEstadoVenta;
+	}
 }

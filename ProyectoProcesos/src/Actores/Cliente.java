@@ -18,7 +18,7 @@ public class Cliente extends Persona{
 	private Imagen imgCedulaPosterior;
 	private String dirCedulaFrontal;
 	private String dirCedulaPosterior;
-	
+	private String referenciaInstalacion;
 	//Atributos de relaciones
 	private Venta oVenta;
 	private List<AsesorComercial> lstListaAsesores = new ArrayList<AsesorComercial>();
@@ -80,6 +80,39 @@ public class Cliente extends Persona{
 	public void setoVenta(Venta oVenta) {
 		this.oVenta = oVenta;
 	}
+
+	public String getReferenciaInstalacion() {
+		return referenciaInstalacion;
+	}
+
+	public void setReferenciaInstalacion(String referenciaInstalacion) {
+		this.referenciaInstalacion = referenciaInstalacion;
+	}
+
+	public List<AsesorComercial> getLstListaAsesores() {
+		return lstListaAsesores;
+	}
+
+	public void setLstListaAsesores(List<AsesorComercial> lstListaAsesores) {
+		this.lstListaAsesores = lstListaAsesores;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [imgCedulaFrontal=" + imgCedulaFrontal + ", imgCedulaPosterior=" + imgCedulaPosterior
+				+ ", dirCedulaFrontal=" + dirCedulaFrontal + ", dirCedulaPosterior=" + dirCedulaPosterior
+				+ ", referenciaInstalacion=" + referenciaInstalacion + ", oVenta=" + oVenta + ", lstListaAsesores="
+				+ lstListaAsesores + ", getNombre()=" + getNombre() + ", getTipoDocumento()=" + getTipoDocumento()
+				+ ", getDocumento()=" + getDocumento() + ", getCelular1()=" + getCelular1() + ", getCelular2()="
+				+ getCelular2() + ", getConvencional()=" + getConvencional() + ", getCorreoPersonal()="
+				+ getCorreoPersonal() + ", getDireccionDomicilio()=" + getDireccionDomicilio()
+				+ ", getDireccionTrabajo()=" + getDireccionTrabajo() + ", getSexo()=" + getSexo()
+				+ ", getFechaNacimiento()=" + getFechaNacimiento() + ", getEstadoCivil()=" + getEstadoCivil()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+	
+	
 
 	
 	

@@ -8,15 +8,17 @@ public class FormaPago {
 	private String formaPago; //Puede ser: "CONTRA FACTURA", "DEBITO CTA. AHORROS", "DEBIDO CTA. CORRIENTE", "TARJETA DE CREDITO";
 	private String entidadBancaria; //No aplicable cuando es por CONTRAFACTURA
 	private String observaciones;
+	private String numCuentaBancaria;
+	private String marcaTarjetaCredito;
 	//En caso de que sea tarjeta de credito o debito
 	private String codigoCSV;
 	private String numTarjeta;
 	private String anioExpiracion;
 	private String mesExpiracion;
-	
+	private Venta oVenta;
 	
 	//Atributos de relaciones
-	private Venta oVenta;
+
 	private Cliente oCliente;
 	
 	//constructor
@@ -38,6 +40,10 @@ public class FormaPago {
 
 	//getters y setters//
 	
+	public FormaPago() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNombreTitular() {
 		return nombreTitular;
 	}
@@ -116,6 +122,22 @@ public class FormaPago {
 
 	public void setoCliente(Cliente oCliente) {
 		this.oCliente = oCliente;
+	}
+
+	public String getNumCuentaBancaria() {
+		return numCuentaBancaria;
+	}
+
+	public void setNumCuentaBancaria(String numCuentaBancaria) {
+		this.numCuentaBancaria = numCuentaBancaria;
+	}
+
+	public String getMarcaTarjetaCredito() {
+		return marcaTarjetaCredito;
+	}
+
+	public void setMarcaTarjetaCredito(String marcaTarjetaCredito) {
+		this.marcaTarjetaCredito = marcaTarjetaCredito;
 	}
 	
 	

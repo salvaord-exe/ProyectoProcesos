@@ -128,6 +128,10 @@ public class ItnFrmMatrizVentas extends JInternalFrame {
 		
 	}
 
+	public void ingresarFila(String[] fila) {
+		this.mdlMatrizVentas.addRow(fila);
+	}
+	
 	public FrmProcesoComercial getoFrmProcesoComercial() {
 		return oFrmProcesoComercial;
 	}

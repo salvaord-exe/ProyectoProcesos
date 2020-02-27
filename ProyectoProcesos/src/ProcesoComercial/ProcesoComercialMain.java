@@ -15,23 +15,13 @@ public class ProcesoComercialMain {
 		
 		ValoresMaestros oValoresMaestros = new ValoresMaestros();
 		
-		//Creacion usuario asesor comercial
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					FrmProcesoComercial frame = new FrmProcesoComercial();
 					
 					

@@ -6,7 +6,8 @@ import InterfazGrafica.ItnFrmFormularioIngresoVenta;
 public class Venta {
 	//Atributos propios de la clase
 	private int numeroVenta; //Comienza en 10000 y se va incrementando de uno a uno
-	
+	private String numSolicitudCredito;
+	private String estadoVenta;
 	
 	//Atributos de relaciones
 	private AsesorComercial oAsesorComercial;
@@ -31,6 +32,10 @@ public class Venta {
 	
 	//getters y setters//
 	
+	public Venta() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getNumeroVenta() {
 		return numeroVenta;
 	}
@@ -66,6 +71,30 @@ public class Venta {
 	}
 	public void setoFormaPago(FormaPago oFormaPago) {
 		this.oFormaPago = oFormaPago;
+	}
+
+	public ItnFrmFormularioIngresoVenta getoItnFrmFormularioIngresoVenta() {
+		return oItnFrmFormularioIngresoVenta;
+	}
+
+	public void setoItnFrmFormularioIngresoVenta(ItnFrmFormularioIngresoVenta oItnFrmFormularioIngresoVenta) {
+		this.oItnFrmFormularioIngresoVenta = oItnFrmFormularioIngresoVenta;
+	}
+
+	public String getNumSolicitudCredito() {
+		return numSolicitudCredito;
+	}
+
+	public void setNumSolicitudCredito(String numSolicitudCredito) {
+		this.numSolicitudCredito = numSolicitudCredito;
+	}
+
+	public String getEstadoVenta() {
+		return estadoVenta;
+	}
+
+	public void setEstadoVenta(String estadoVenta) {
+		this.estadoVenta = estadoVenta;
 	}
 	
 	
