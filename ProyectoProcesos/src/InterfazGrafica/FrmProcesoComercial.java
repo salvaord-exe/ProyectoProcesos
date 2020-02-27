@@ -50,6 +50,7 @@ public class FrmProcesoComercial extends JFrame {
 	private JDUsuario oJDCrearUsuario;
 	private ItnFrmFormularioIngresoVenta oItnFrmFormularioIngresoVenta;
 	private ItnFrmMatrizVentas oItnFrmMatrizVentas;
+	private JDReporte oJDReporte;
 
 	/**
 	 * Launch the application.
@@ -64,6 +65,7 @@ public class FrmProcesoComercial extends JFrame {
 		this.oEmpresa.setoFrmProcesoComercial(getThis());
 		this.setoEmpresa(oEmpresa);
 		
+		this.oJDReporte = new JDReporte();
 		
 		
 		//Se agrega usuarios para prueba
@@ -190,9 +192,14 @@ public class FrmProcesoComercial extends JFrame {
 		this.mnVentas.add(this.mntnMatrizIngresoVenta);
 
 		this.mntnMatrizConsultas = new JMenuItem("CONSULTA ESTADO DE VENTAS");
-		this.mnVentas.add(this.mntnMatrizConsultas);
+		//this.mnVentas.add(this.mntnMatrizConsultas);
 
 		this.mntnReportes = new JMenuItem("REPORTES");
+		mntnReportes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				getThis().addJDReporte();
+			}
+		});
 		this.mnVentas.add(this.mntnReportes);
 
 		
@@ -203,7 +210,50 @@ public class FrmProcesoComercial extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 	}
 
+	public void addJDReporte() {
+		this.oJDReporte.getTxtVentasIngresadas().setText(this.contarVentasIngresadas());
+		this.oJDReporte.getTxtVentasOperativas().setText(this.contarVentasOperativas());
+		this.oJDReporte.getTxtTotalVentas().setText(this.calcularTotalVentas());
+		this.oJDReporte.setVisible(true);
+		
+	}
 	
+	public String contarVentasIngresadas() {
+		
+		int ventasIngresadas = 0;
+		
+		for (int i=0;i<this.getoEmpresa().getLstVentas().size();i++) {
+			ventasIngresadas++;
+		}
+		
+		return Integer.toString(ventasIngresadas);
+		
+	}
+	
+	public String contarVentasOperativas() {
+		
+		int ventasOperativas = 0;
+		
+		for (int i=0;i<this.getoEmpresa().getLstVentas().size();i++) {
+			if (this.getoEmpresa().getLstVentas().get(i).getEstadoVenta().equals("OPERATIVO/ALTA")) {
+				ventasOperativas++;
+			}
+		}
+			
+		return Integer.toString(ventasOperativas);
+	}
+	
+	public String calcularTotalVentas() {
+		int totalVentas = 0;
+		
+		for (int i=0;i<this.getoEmpresa().getLstVentas().size();i++) {
+			if (this.getoEmpresa().getLstVentas().get(i).getEstadoVenta().equals("OPERATIVO/ALTA")) {
+				totalVentas += this.getoEmpresa().getLstVentas().get(i).getValorVenta();
+			}
+		}
+			
+		return Integer.toString(totalVentas);
+	}
 	
 	// Funciones que agregan internal frames al desktop pane
 	public void addItnFrmFormularioIngresoVenta() {
@@ -347,6 +397,22 @@ public class FrmProcesoComercial extends JFrame {
 
 	public void setoItnFrmMatrizVentas(ItnFrmMatrizVentas oItnFrmMatrizVentas) {
 		this.oItnFrmMatrizVentas = oItnFrmMatrizVentas;
+	}
+
+	public JMenuItem getMntnReportes() {
+		return mntnReportes;
+	}
+
+	public void setMntnReportes(JMenuItem mntnReportes) {
+		this.mntnReportes = mntnReportes;
+	}
+
+	public JDReporte getoJDReporte() {
+		return oJDReporte;
+	}
+
+	public void setoJDReporte(JDReporte oJDReporte) {
+		this.oJDReporte = oJDReporte;
 	}
 	
 	
