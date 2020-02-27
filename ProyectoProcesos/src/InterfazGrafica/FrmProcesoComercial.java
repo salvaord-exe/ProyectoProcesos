@@ -208,7 +208,20 @@ public class FrmProcesoComercial extends JFrame {
 	// Funciones que agregan internal frames al desktop pane
 	public void addItnFrmFormularioIngresoVenta() {
 		
-		if(this.getoItnFrmFormularioIngresoVenta()!=null) {
+		this.oItnFrmFormularioIngresoVenta = new ItnFrmFormularioIngresoVenta(getThis());
+		
+		this.setoItnFrmFormularioIngresoVenta(this.oItnFrmFormularioIngresoVenta);
+		this.oItnFrmFormularioIngresoVenta.setoFrmProcesoComercial(getThis());
+		
+		this.desktopPane.add(oItnFrmFormularioIngresoVenta);
+		
+		Dimension desktopSize = this.desktopPane.getSize();
+		Dimension FrameSize = oItnFrmFormularioIngresoVenta.getSize();
+		
+		oItnFrmFormularioIngresoVenta.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+		oItnFrmFormularioIngresoVenta.setVisible(true);
+		
+		/*if(this.getoItnFrmFormularioIngresoVenta()!=null) {
 			JOptionPane.showMessageDialog(null, "Solo puede ingresar una venta a la vez.\nCierre la anterior ventana para ingresar una nueva venta.", 
 					"Error ingreso de venta", JOptionPane.ERROR_MESSAGE);
 		} else {
@@ -226,14 +239,14 @@ public class FrmProcesoComercial extends JFrame {
 			oItnFrmFormularioIngresoVenta.setVisible(true);
 			
 			
-		}
+		}*/
 		
 		
 	}
 	
 	public void cerrarFormularioIngresoVentas() {
 		this.getoItnFrmFormularioIngresoVenta().setVisible(false);
-		this.setoItnFrmFormularioIngresoVenta(null);
+		
 		
 	}
 	
@@ -255,7 +268,7 @@ public class FrmProcesoComercial extends JFrame {
 	
 	public void cerrarMatrizVentas() {
 		this.oItnFrmMatrizVentas.setVisible(false);
-		this.setoItnFrmMatrizVentas(null);
+		
 	}
 	
 	public void eventoIniciarSesion() {

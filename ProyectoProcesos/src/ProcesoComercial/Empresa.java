@@ -3,6 +3,8 @@ package ProcesoComercial;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import Actores.*;
 import ClasesAbstractas.Usuario;
 import InterfazGrafica.*;
@@ -13,6 +15,7 @@ public class Empresa {
 	private List<AsesorComercial> lstAsesoresComerciales = new ArrayList<AsesorComercial>();
 	private List<Supervisor> lstSupervisores = new ArrayList<Supervisor>();
 	private int idVenta;
+	
 	
 	private FrmProcesoComercial oFrmProcesoComercial;
 	private List<Venta> lstVentas = new ArrayList<Venta>();
@@ -26,8 +29,10 @@ public class Empresa {
 	
 	public void ingresarVenta(ItnFrmFormularioIngresoVenta oItnFrmFormularioIngresoVenta) {
 		
+		
 		Venta oVenta = new Venta();
 		oVenta.setoItnFrmFormularioIngresoVenta(oItnFrmFormularioIngresoVenta);
+		oVenta.getoItnFrmFormularioIngresoVenta().setoVenta(oVenta);
 		this.idVenta++;
 		oVenta.setNumeroVenta(this.idVenta);
 		
@@ -74,16 +79,40 @@ public class Empresa {
 		oPlanesMoviles.setTipoServicioMovil(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxServicioMovilSolicitado().getSelectedItem().toString());
 		oPlanesMoviles.setCodigoNIP(oVenta.getoItnFrmFormularioIngresoVenta().getTxtCodigoNIP().getText());
 		oPlanesMoviles.setPlanLineaMovil(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxPlanPospago().getSelectedItem().toString());
-		oPlanesMoviles.setOperadoraDonante(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxOperadorDonante().getSelectedItem().toString());
+		try {
+			oPlanesMoviles.setOperadoraDonante(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxOperadorDonante().getSelectedItem().toString());
+			
+		}catch(Exception e) {
+			oPlanesMoviles.setOperadoraDonante("");
+		}
+		
 		oPlanesMoviles.setoServicio(oServicio);
+		oServicio.setPlanMovilPospago(oPlanesMoviles);
 		
 		
 		FormaPago oFormaPago = new FormaPago();
-		oFormaPago.setFormaPago(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxFormaPago().getSelectedItem().toString());
-		oFormaPago.setEntidadBancaria(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxEntidadesBancarias().getSelectedItem().toString());
 		oFormaPago.setNumCuentaBancaria(oVenta.getoItnFrmFormularioIngresoVenta().getTxtNoCuenta().getText());
 		oFormaPago.setNombreTitular(oVenta.getoCliente().getNombre());
-		oFormaPago.setMarcaTarjetaCredito(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxMarcaTarjetaCredito().getSelectedItem().toString());
+		
+		
+		oFormaPago.setFormaPago(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxFormaPago().getSelectedItem().toString());
+		
+		try {
+			oFormaPago.setEntidadBancaria(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxEntidadesBancarias().getSelectedItem().toString());
+			
+		}catch(Exception e) {
+			oFormaPago.setEntidadBancaria("");
+		}
+		
+		try {
+			oFormaPago.setMarcaTarjetaCredito(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxMarcaTarjetaCredito().getSelectedItem().toString());
+			
+		}catch(Exception e) {
+			oFormaPago.setMarcaTarjetaCredito("");
+		}
+		
+		
+		
 		oFormaPago.setNumTarjeta(oVenta.getoItnFrmFormularioIngresoVenta().getTxtNoTarjetaCredito().getText());
 		oFormaPago.setAnioExpiracion(oVenta.getoItnFrmFormularioIngresoVenta().getSpnAnioExpiracion().getValue().toString());
 		oFormaPago.setMesExpiracion(oVenta.getoItnFrmFormularioIngresoVenta().getSpnMesExpiracion().getValue().toString());
@@ -93,21 +122,39 @@ public class Empresa {
 		
 		oVenta.setEstadoVenta(oVenta.getoItnFrmFormularioIngresoVenta().getCmbxEstadoVenta().getSelectedItem().toString());
 		
+		oVenta.setValorVenta(oVenta.calcularValorVenta(oVenta.getoServicio().getPlanMovilPospago().getPlanLineaMovil()));
 		
 		
-		this.lstVentas.add(oVenta);
 		
-		 
 		
 		String arrayFila[] = new String[11];
 		
 		
 		arrayFila[0] = Integer.toString(oVenta.getNumeroVenta());
+		arrayFila[1] = oVenta.getoCliente().getNombre();
+		arrayFila[2] = oVenta.getoCliente().getDocumento();
+		arrayFila[3] = "";
+		arrayFila[4] = oVenta.getoServicio().getPlanMovilPospago().getPlanLineaMovil();
+		arrayFila[5] = Integer.toString(oVenta.getValorVenta());
+		arrayFila[6] = oVenta.getoCliente().getCelular1();
+		arrayFila[7] = oVenta.getoCliente().getCorreoPersonal();
+		arrayFila[8] = oVenta.getoAsesorComercial().getNombre();
+		arrayFila[9] = oVenta.getoAsesorComercial().getoSupervisor().getNombre();
+		arrayFila[10] = oVenta.getEstadoVenta().toString();
+					
 		
 		
-		System.out.println(arrayFila.toString());
+		oVenta.setCodMatrizVenta(this.getoFrmProcesoComercial().getoItnFrmMatrizVentas().ingresarFila(arrayFila));				
+		
+		oVenta.setoEmpresa(this);
+		this.lstVentas.add(oVenta);
+		
+		
+		oVenta.getoItnFrmFormularioIngresoVenta().setVisible(false);
+		
 		
 	}
+	
 	
 	
 

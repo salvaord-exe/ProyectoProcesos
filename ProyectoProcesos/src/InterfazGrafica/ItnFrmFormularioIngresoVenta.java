@@ -17,6 +17,8 @@ import java.awt.FlowLayout;
 import java.util.Date;
 
 import ClasesAbstractas.*;
+import ProcesoComercial.Venta;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
 import com.jgoodies.forms.layout.FormLayout;
@@ -83,7 +85,12 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 	private JTextArea txtAreaDireccionDomicilioCliente;
 	private JTextArea txtAreaDireccionLaboralCliente;
 	private JComboBox cmbxEstadoVenta;
-	private JTextField textField;
+	private JTextField txtSolicitudCredito;
+	private JButton btnGenerarAcuse;
+	private JButton btnActualizar;
+	private JButton btnEnviar;
+	private JButton btnCancelar;
+	private Venta oVenta;
 
 	/**
 	 * Launch the application.
@@ -120,7 +127,7 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		flowLayout.setAlignment(FlowLayout.RIGHT);
 		getContentPane().add(panel_1, BorderLayout.SOUTH);
 
-		JButton btnEnviar = new JButton("Enviar");
+		btnEnviar = new JButton("Enviar");
 		
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -132,12 +139,26 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 			}
 		});
 		
+		btnGenerarAcuse = new JButton("Generar Acuse");
+		panel_1.add(btnGenerarAcuse);
+		btnGenerarAcuse.setVisible(false);
+		
+		btnActualizar = new JButton("Guardar Cambios");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				getThis().getoVenta().actualizarVenta();
+			}
+		});
+		panel_1.add(btnActualizar);
+		btnActualizar.setVisible(false);
 		panel_1.add(btnEnviar);
 
-		JButton btnCancelar = new JButton("Cancelar");
+
+		
+		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				getThis().getoFrmProcesoComercial().cerrarFormularioIngresoVentas();
+				getThis().setVisible(false);
 			}
 		});
 		panel_1.add(btnCancelar);
@@ -191,10 +212,10 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		
 		JLabel lblNewLabel_9 = new JLabel("NUM SOLICITUD CREDITO");
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setEnabled(false);
-		textField.setColumns(10);
+		txtSolicitudCredito = new JTextField();
+		txtSolicitudCredito.setEditable(false);
+		txtSolicitudCredito.setEnabled(false);
+		txtSolicitudCredito.setColumns(10);
 
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
@@ -223,7 +244,7 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 							.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
 								.addComponent(lblNewLabel_9)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField))
+								.addComponent(txtSolicitudCredito))
 							.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
 								.addComponent(lblEstadoDeLa, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -256,7 +277,7 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_9)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtSolicitudCredito, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(234, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
@@ -598,7 +619,9 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		panel_1.add(label);
 
 		cmbxServicioMovilSolicitado = new JComboBox(ValoresMaestros.TIPOS_SERVICIO_MOVIL);
-
+		
+		this.cmbxServicioMovilSolicitado.setSelectedItem(ValoresMaestros.TIPOS_SERVICIO_MOVIL[0]);
+		
 		panel_1.add(cmbxServicioMovilSolicitado);
 
 		txtNumeroPortarMigrar = new JPanel();
@@ -612,7 +635,8 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		JLabel lblOperadorDonante = new JLabel("OPERADORA DONANTE");
 
 		cmbxOperadorDonante = new JComboBox(ValoresMaestros.OPERADORA_DONANTE);
-
+		this.cmbxOperadorDonante.setSelectedItem(ValoresMaestros.OPERADORA_DONANTE[0]);
+		
 		JLabel lblNumeroPortarMigrar = new JLabel("NUMERO A PORTAR O MIGRAR");
 
 		txtNumPortarMigrar = new JTextField();
@@ -621,12 +645,15 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		JLabel lblTipoPlanPospago = new JLabel("TIPO DE PLAN POSPAGO");
 
 		cmbxTipoPlanPospago = new JComboBox(ValoresMaestros.TIPO_SERVICIO_POSPAGO);
-
+		this.cmbxTipoPlanPospago.setSelectedItem(ValoresMaestros.TIPO_SERVICIO_POSPAGO[0]);
+		
 		JLabel lblPlanPospago = new JLabel("PLAN POSPAGO");
 
 		cmbxPlanPospago = new JComboBox();
+		
 		cmbxPlanPospago.setModel(new DefaultComboBoxModel(ValoresMaestros.POSPAGO_CONEXION_SIN_LIMITE));
-
+		this.cmbxPlanPospago.setSelectedItem(ValoresMaestros.POSPAGO_CONEXION_SIN_LIMITE[0]);
+		
 		cmbxTipoPlanPospago.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				switch (getThis().getCmbxTipoPlanPospago().getSelectedItem().toString()) {
@@ -731,7 +758,10 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		pnlSeleccionFormaPago.add(lblNewLabel_1);
 
 		cmbxFormaPago = new JComboBox(ValoresMaestros.TIPOS_FORMA_PAGO);
+		this.cmbxFormaPago.setSelectedItem(ValoresMaestros.TIPOS_FORMA_PAGO[0]);
+		
 		pnlSeleccionFormaPago.add(cmbxFormaPago);
+		
 
 		JPanel pnlDetalleFormaPago = new JPanel();
 		pnlFormaPago.add(pnlDetalleFormaPago, BorderLayout.CENTER);
@@ -757,7 +787,9 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		JLabel lblNewLabel_6 = new JLabel("MARCA");
 
 		cmbxMarcaTarjetaCredito = new JComboBox(ValoresMaestros.MARCAS_TARJETAS_CREDITO);
-
+		
+		this.cmbxMarcaTarjetaCredito.setSelectedItem(ValoresMaestros.MARCAS_TARJETAS_CREDITO[0]);
+		
 		JLabel lblNewLabel_7 = new JLabel("A\u00D1O EXP");
 
 		JLabel lblMesExp = new JLabel("MES EXP");
@@ -843,7 +875,8 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		JLabel lblNewLabel_2 = new JLabel("NOMBRE ENTIDAD BANCARIA");
 
 		cmbxEntidadesBancarias = new JComboBox(ValoresMaestros.ENTIDADES_BANCARIAS);
-
+		this.cmbxEntidadesBancarias.setSelectedItem(ValoresMaestros.ENTIDADES_BANCARIAS[0]);
+		
 		JLabel lblNewLabel_5 = new JLabel("NO. CUENTA");
 
 		txtNoCuenta = new JTextField();
@@ -931,7 +964,25 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 				// DE CREDITO"};
 
 				case "CONTRA FACTURA":
-					getThis().ventanaContraFactura();
+					
+					getThis().cmbxEntidadesBancarias.setModel(new DefaultComboBoxModel(ValoresMaestros.ENTIDADES_BANCARIAS));
+					getThis().cmbxEntidadesBancarias.setEnabled(false);
+					getThis().txtNoCuenta.setText("");
+					getThis().txtNoCuenta.setEnabled(false);
+					getThis().txtNoTarjetaCredito.setText("");
+					getThis().txtNoTarjetaCredito.setEnabled(false);
+					getThis().cmbxMarcaTarjetaCredito.setModel(new DefaultComboBoxModel());
+					getThis().cmbxMarcaTarjetaCredito.setSelectedItem("");
+					getThis().cmbxMarcaTarjetaCredito.setEnabled(false);
+					getThis().spnAnioExpiracion.setValue(0);
+					getThis().spnAnioExpiracion.setEnabled(false);
+					getThis().spnMesExpiracion.setValue(0);
+					getThis().spnMesExpiracion.setEnabled(false);
+					getThis().txtCodCSV.setText("");
+					getThis().txtCodCSV.setEnabled(false);
+					getThis().cmbxEntidadesBancarias.setSelectedItem("");
+					getThis().cmbxMarcaTarjetaCredito.setSelectedItem("");
+					
 					break;
 
 				case "DEBITO CTA. AHORROS":
@@ -953,13 +1004,14 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 	}
 
 	public void ventanaContraFactura() {
-		getThis().cmbxEntidadesBancarias.setModel(new DefaultComboBoxModel());
+		getThis().cmbxEntidadesBancarias.setModel(new DefaultComboBoxModel(ValoresMaestros.ENTIDADES_BANCARIAS));
 		getThis().cmbxEntidadesBancarias.setEnabled(false);
 		getThis().txtNoCuenta.setText("");
 		getThis().txtNoCuenta.setEnabled(false);
 		getThis().txtNoTarjetaCredito.setText("");
 		getThis().txtNoTarjetaCredito.setEnabled(false);
 		getThis().cmbxMarcaTarjetaCredito.setModel(new DefaultComboBoxModel());
+		getThis().cmbxMarcaTarjetaCredito.setSelectedItem("");
 		getThis().cmbxMarcaTarjetaCredito.setEnabled(false);
 		getThis().spnAnioExpiracion.setValue(0);
 		getThis().spnAnioExpiracion.setEnabled(false);
@@ -967,6 +1019,8 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		getThis().spnMesExpiracion.setEnabled(false);
 		getThis().txtCodCSV.setText("");
 		getThis().txtCodCSV.setEnabled(false);
+		getThis().cmbxEntidadesBancarias.setSelectedItem("");
+		getThis().cmbxMarcaTarjetaCredito.setSelectedItem("");
 	}
 
 	public void ventanaCuentaBancaria() {
@@ -975,7 +1029,7 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		getThis().txtNoCuenta.setEnabled(true);
 		getThis().txtNoTarjetaCredito.setText("");
 		getThis().txtNoTarjetaCredito.setEnabled(false);
-		getThis().cmbxMarcaTarjetaCredito.setModel(new DefaultComboBoxModel());
+		//getThis().cmbxMarcaTarjetaCredito.setModel(new DefaultComboBoxModel());
 		getThis().cmbxMarcaTarjetaCredito.setEnabled(false);
 		getThis().spnAnioExpiracion.setValue(0);
 		getThis().spnAnioExpiracion.setEnabled(false);
@@ -983,6 +1037,8 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		getThis().spnMesExpiracion.setEnabled(false);
 		getThis().txtCodCSV.setText("");
 		getThis().txtCodCSV.setEnabled(false);
+		getThis().cmbxEntidadesBancarias.setSelectedItem("");
+		getThis().cmbxMarcaTarjetaCredito.setSelectedItem("");
 	}
 
 	public void ventanaTarjetaCredito() {
@@ -999,6 +1055,8 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		getThis().spnMesExpiracion.setEnabled(true);
 		getThis().spnMesExpiracion.setValue(1);
 		getThis().txtCodCSV.setEnabled(true);
+		getThis().cmbxEntidadesBancarias.setSelectedItem("");
+		getThis().cmbxMarcaTarjetaCredito.setSelectedItem("");
 	}
 
 	public void cargarListaAsesoresComerciales() {
@@ -1037,6 +1095,18 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 		}
 
 		
+	}
+	
+	public void pantallaActualizarRegistro() {
+		this.btnActualizar.setVisible(true);
+		this.btnEnviar.setVisible(false);
+		this.btnGenerarAcuse.setVisible(true);
+		this.setVisible(true);
+		this.cmbxEstadoVenta.setEnabled(true);
+		this.txtSolicitudCredito.setEditable(true);
+		this.txtSolicitudCredito.setEnabled(true);
+		this.cmbxAsesor.setEnabled(false);
+		this.cmbxSupervisor.setEnabled(false);
 	}
 
 	public boolean validarIngresoFormulario() {
@@ -1366,4 +1436,55 @@ public class ItnFrmFormularioIngresoVenta extends JInternalFrame {
 	public void setCmbxEstadoVenta(JComboBox cmbxEstadoVenta) {
 		this.cmbxEstadoVenta = cmbxEstadoVenta;
 	}
+
+	public JTextField getTxtSolicitudCredito() {
+		return txtSolicitudCredito;
+	}
+
+	public void setTxtSolicitudCredito(JTextField txtSolicitudCredito) {
+		this.txtSolicitudCredito = txtSolicitudCredito;
+	}
+
+	public JButton getBtnGenerarAcuse() {
+		return btnGenerarAcuse;
+	}
+
+	public void setBtnGenerarAcuse(JButton btnGenerarAcuse) {
+		this.btnGenerarAcuse = btnGenerarAcuse;
+	}
+
+	public JButton getBtnActualizar() {
+		return btnActualizar;
+	}
+
+	public void setBtnActualizar(JButton btnActualizar) {
+		this.btnActualizar = btnActualizar;
+	}
+
+	public JButton getBtnEnviar() {
+		return btnEnviar;
+	}
+
+	public void setBtnEnviar(JButton btnEnviar) {
+		this.btnEnviar = btnEnviar;
+	}
+
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
+
+	public void setBtnCancelar(JButton btnCancelar) {
+		this.btnCancelar = btnCancelar;
+	}
+
+	public Venta getoVenta() {
+		return oVenta;
+	}
+
+	public void setoVenta(Venta oVenta) {
+		this.oVenta = oVenta;
+	}
+	
+	
+	
 }

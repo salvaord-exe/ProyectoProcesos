@@ -8,7 +8,7 @@ public class Servicio {
 	private String tipoServicio; //Solo será "MOVIL"
 	private int lineasSolicitadas; //Puede ser entre 1 y 4 lineas moviles
 	private String numPortarMigrar;
-	private PlanesMoviles lstPlanesMoviles[] = new PlanesMoviles[4];
+	private PlanesMoviles planMovilPospago;
 	private Venta oVenta;
 	
 	//constructores
@@ -19,7 +19,7 @@ public class Servicio {
 		this.tipoServicio = tipoServicio;
 		this.lineasSolicitadas = lineasSolicitadas;
 		this.numPortarMigrar = numPortarMigrar;
-		this.lstPlanesMoviles = lstPlanesMoviles;
+		
 	}
 
 	//metodos//
@@ -56,13 +56,6 @@ public class Servicio {
 		this.lineasSolicitadas = lineasSolicitadas;
 	}
 
-	public PlanesMoviles[] getLstPlanesMoviles() {
-		return lstPlanesMoviles;
-	}
-
-	public void setLstPlanesMoviles(PlanesMoviles[] lstPlanesMoviles) {
-		this.lstPlanesMoviles = lstPlanesMoviles;
-	}
 
 	public String getNumPortarMigrar() {
 		return numPortarMigrar;
@@ -79,6 +72,16 @@ public class Servicio {
 	public void setoVenta(Venta oVenta) {
 		this.oVenta = oVenta;
 	}
+
+	public PlanesMoviles getPlanMovilPospago() {
+		return planMovilPospago;
+	}
+
+	public void setPlanMovilPospago(PlanesMoviles planMovilPospago) {
+		this.planMovilPospago = planMovilPospago;
+	}
+
+
 	
 	
 

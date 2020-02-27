@@ -10,10 +10,12 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import ClasesAbstractas.ValoresMaestros;
+import ProcesoComercial.Venta;
 
 import java.awt.Font;
 import javax.swing.JTable;
@@ -28,7 +30,7 @@ public class ItnFrmMatrizVentas extends JInternalFrame {
 	private DefaultTableModel mdlMatrizVentas;
 	private FrmProcesoComercial oFrmProcesoComercial;
 	private JTextField textField_2;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -63,36 +65,43 @@ public class ItnFrmMatrizVentas extends JInternalFrame {
 		panel_4.add(pnlBuscadorSolicitudCredito);
 		
 		JButton btnNewButton_3 = new JButton("BUSCAR POR SOLICITUD CREDITO");
-		pnlBuscadorSolicitudCredito.add(btnNewButton_3);
+		//pnlBuscadorSolicitudCredito.add(btnNewButton_3);
 		
 		textField = new JTextField();
-		pnlBuscadorSolicitudCredito.add(textField);
+		//pnlBuscadorSolicitudCredito.add(textField);
 		textField.setColumns(10);
 		
 		JPanel pnlBusquedaCedula = new JPanel();
-		panel_4.add(pnlBusquedaCedula);
+		//panel_4.add(pnlBusquedaCedula);
 		
 		JButton btnNewButton_4 = new JButton("BUSCAR POR NUM CEDULA");
-		pnlBusquedaCedula.add(btnNewButton_4);
+		//pnlBusquedaCedula.add(btnNewButton_4);
 		
 		textField_1 = new JTextField();
-		pnlBusquedaCedula.add(textField_1);
+		//pnlBusquedaCedula.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
-		panel_4.add(panel_1);
+		//panel_4.add(panel_1);
 		
 		JButton btnNewButton_1 = new JButton("BUSCAR POR ID");
-		panel_1.add(btnNewButton_1);
+		//panel_1.add(btnNewButton_1);
 		
 		textField_2 = new JTextField();
-		panel_1.add(textField_2);
+		//panel_1.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
 		getContentPane().add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("EDITAR REGISTRO");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				getThis().actualizarRegistro().getoItnFrmFormularioIngresoVenta().pantallaActualizarRegistro();
+				
+			}
+		});
 		panel_2.add(btnNewButton);
 		
 		JButton btnCerrar = new JButton("CERRAR VENTANA");
@@ -119,7 +128,9 @@ public class ItnFrmMatrizVentas extends JInternalFrame {
 		
 		this.pnlMatrizVentas = new JScrollPane();
 		this.tblMatrizVentas = new JTable();
-		this.mdlMatrizVentas = new DefaultTableModel();
+		this.mdlMatrizVentas = new DefaultTableModel() {
+			public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
+		};
 		this.mdlMatrizVentas.setColumnIdentifiers(ValoresMaestros.COLUMNAS_MATRIZ_VENTAS);
 		this.pnlMatrizVentas.setViewportView(this.tblMatrizVentas);
 		this.tblMatrizVentas.setModel(this.mdlMatrizVentas);
@@ -128,8 +139,51 @@ public class ItnFrmMatrizVentas extends JInternalFrame {
 		
 	}
 
-	public void ingresarFila(String[] fila) {
+	public Venta actualizarRegistro() {
+		
+		try {
+			int fila = getThis().tblMatrizVentas.getSelectedRow();
+			String idVenta =  (String) this.mdlMatrizVentas.getValueAt(fila, 0);
+			
+			
+			int cantidadVentas = this.getoFrmProcesoComercial().getoEmpresa().getLstVentas().size();
+			
+			for (int i=0;i<cantidadVentas;i++) {
+				if(Integer.parseInt(idVenta)==this.getoFrmProcesoComercial().getoEmpresa().getLstVentas().get(i).getNumeroVenta()) {
+					return this.getoFrmProcesoComercial().getoEmpresa().getLstVentas().get(i);
+				}
+			}
+			
+				
+			
+			
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "No ha seleccionado ningun registro");
+		}
+		
+		return null;
+		
+	}
+	
+	public void actualizarFila(int codigo, String[] valoresActualizar) {
+		
+		int indexTabla;
+		
+		for (int i=0;i<this.mdlMatrizVentas.getRowCount();i++) {
+			if(this.mdlMatrizVentas.getValueAt(i, 0).toString().equals(Integer.toString(codigo))) {
+				for (int j=0;j<this.mdlMatrizVentas.getColumnCount();j++) {
+					this.mdlMatrizVentas.setValueAt(valoresActualizar[j], i, j);
+				}
+				return;
+			}
+		}
+		
+		
+	}
+	
+	public int ingresarFila(String[] fila) {
 		this.mdlMatrizVentas.addRow(fila);
+		return (this.mdlMatrizVentas.getRowCount()-1);
 	}
 	
 	public FrmProcesoComercial getoFrmProcesoComercial() {
